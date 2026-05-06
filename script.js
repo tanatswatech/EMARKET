@@ -269,19 +269,27 @@ function loadReels() {
   reels.forEach(url => {
     const videoId = extractYouTubeID(url);
 
-    if (!videoId) return;
+    const wrapper = document.createElement("div");
+    wrapper.style.margin = "10px";
+
+    if (!videoId) {
+      wrapper.innerHTML = `<p>Invalid YouTube link</p>`;
+      reelList.appendChild(wrapper);
+      return;
+    }
 
     const iframe = document.createElement("iframe");
 
-    iframe.width = "200";
-    iframe.height = "350";
+    iframe.width = "250";
+    iframe.height = "400";
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
     iframe.frameBorder = "0";
     iframe.allow =
       "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
     iframe.allowFullscreen = true;
 
-    reelList.appendChild(iframe);
+    wrapper.appendChild(iframe);
+    reelList.appendChild(wrapper);
   });
 }
 /* =======================
@@ -310,7 +318,7 @@ window.filterProducts = filterProducts;
 window.logoutSeller = logoutSeller;
 function extractYouTubeID(url) {
   const regex =
-    /(?:youtube\.com.*(?:\\?|&)v=|youtu\.be\\/)([a-zA-Z0-9_-]{11})/;
+    /(?:youtu\.be\/|youtube\.com.*[?&]v=|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;
 
   const match = url.match(regex);
 
