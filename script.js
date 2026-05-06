@@ -172,6 +172,7 @@ function addProduct() {
 window.onload = function () {
   loadProducts();
   showUser();
+  updateStats();
 };
 function loadProducts() {
   const products = JSON.parse(localStorage.getItem("products")) || [];
