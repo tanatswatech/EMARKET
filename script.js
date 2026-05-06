@@ -138,3 +138,6 @@ function addProduct() {
 
   alert("Product added!");
 }
+window.onload = function () {
+  loadProducts();
+};
