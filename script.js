@@ -156,3 +156,24 @@ function filterProducts(category) {
 
   displayProducts(filtered);
 }
+function displayProducts(products) {
+  const productList = document.getElementById("productList");
+
+  if (!productList) return;
+
+  productList.innerHTML = "";
+
+  products.forEach(product => {
+    const div = document.createElement("div");
+    div.className = "product-card";
+
+    div.innerHTML = `
+      <img src="${product.image}" style="width:100%; height:120px;">
+      <h3>${product.name}</h3>
+      <p>$${product.price}</p>
+      <button onclick="buyProduct()">Buy</button>
+    `;
+
+    productList.appendChild(div);
+  });
+}
