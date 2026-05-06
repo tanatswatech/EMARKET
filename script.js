@@ -179,4 +179,4 @@ function displayProducts(products) {
     productList.appendChild(div);
   });
 }
-localStorage.clear();
+
