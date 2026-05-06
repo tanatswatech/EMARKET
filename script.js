@@ -272,3 +272,6 @@ function loadReels() {
   });
   console.log("Loading reels...");
 }
+window.registerSeller = registerSeller;
+window.loginSeller = loginSeller;
+window.buyProduct = buyProduct;
