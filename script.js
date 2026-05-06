@@ -52,3 +52,14 @@ function loginUser() {
     alert("Invalid login details");
   }
 }
+function pay() {
+  const bar = document.getElementById("loadingBar");
+
+  bar.style.width = "100%";
+
+  setTimeout(() => {
+    bar.style.width = "0%";
+    alert("Payment Successful!");
+    window.location.href = "receipt.html";
+  }, 1500);
+}
