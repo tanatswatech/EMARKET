@@ -19,6 +19,19 @@ function registerUser() {
     return;
   }
 
+  const user = { name, surname, email, password };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  // ✅ KEEP USER LOGGED IN
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+  alert("Registered successfully!");
+
+  // ✅ GO BACK TO HOMEPAGE
+  window.location.href = "index.html";
+}
+
   const user = {
     name,
     surname,
