@@ -128,7 +128,9 @@ function addProduct() {
     return;
   }
 
-  const product = { name, price, image };
+const category = document.getElementById("pCategory").value;
+
+const product = { name, price, image, category };
 
   let products = JSON.parse(localStorage.getItem("products")) || [];
 
