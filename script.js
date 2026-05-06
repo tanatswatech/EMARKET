@@ -54,13 +54,18 @@ function loginUser() {
   const savedUser = JSON.parse(localStorage.getItem("user"));
 
   if (!savedUser) {
-    alert("No user found. Please register.");
+    alert("No user found. Register first.");
     return;
   }
 
   if (email === savedUser.email && password === savedUser.password) {
+
+    // ✅ SAVE LOGIN SESSION
+    localStorage.setItem("loggedInUser", JSON.stringify(savedUser));
+
     alert("Login successful!");
-    window.location.href = "checkout.html";
+    window.location.href = "index.html";
+
   } else {
     alert("Invalid login details");
   }
