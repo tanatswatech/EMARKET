@@ -34,3 +34,21 @@ function registerUser() {
   // GO TO CHECKOUT (next step)
   window.location.href = "checkout.html";
 }
+function loginUser() {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  const savedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (!savedUser) {
+    alert("No user found. Please register.");
+    return;
+  }
+
+  if (email === savedUser.email && password === savedUser.password) {
+    alert("Login successful!");
+    window.location.href = "checkout.html";
+  } else {
+    alert("Invalid login details");
+  }
+}
