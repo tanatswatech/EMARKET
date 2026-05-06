@@ -258,6 +258,7 @@ function addReel() {
 }
 function loadReels() {
   const reelList = document.getElementById("reelList");
+
   if (!reelList) return;
 
   const reels = JSON.parse(localStorage.getItem("reels")) || [];
@@ -265,13 +266,12 @@ function loadReels() {
   reelList.innerHTML = "";
 
   reels.forEach(url => {
-    const div = document.createElement("div");
-    div.className = "reel";
+    const video = document.createElement("video");
 
-    div.innerHTML = `
-      <video src="${url}" controls width="150"></video>
-    `;
+    video.src = url;
+    video.controls = true;
+    video.width = 150;
 
-    reelList.appendChild(div);
+    reelList.appendChild(video);
   });
 }
