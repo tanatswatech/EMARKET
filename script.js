@@ -166,3 +166,12 @@ function loadProducts() {
     productList.appendChild(div);
   });
 }
+function filterProducts(category) {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+
+  const filtered = category === "all"
+    ? products
+    : products.filter(p => p.category.toLowerCase() === category);
+
+  displayProducts(filtered);
+}
