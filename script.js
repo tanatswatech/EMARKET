@@ -122,15 +122,19 @@ function addProduct() {
   const name = document.getElementById("pName").value;
   const price = document.getElementById("pPrice").value;
   const image = document.getElementById("pImage").value;
+  const category = document.getElementById("pCategory").value;
 
-  if (!name || !price || !image) {
+  if (!name || !price || !image || !category) {
     alert("Fill all fields");
     return;
   }
 
-const category = document.getElementById("pCategory").value;
-
-const product = { name, price, image, category };
+  const product = {
+    name,
+    price,
+    image,
+    category: category.toLowerCase()
+  };
 
   let products = JSON.parse(localStorage.getItem("products")) || [];
 
