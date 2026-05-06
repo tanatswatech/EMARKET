@@ -111,3 +111,16 @@ button {
   background: var(--primary);
   transition: width 0.5s;
 }
+.form-container {
+  width: 300px;
+  margin: 80px auto;
+  background: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.form-container input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+}
