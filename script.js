@@ -211,10 +211,13 @@ function displayProducts(products) {
 function showUser() {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
+  const nav = document.querySelector(".nav-links");
+
+  if (!nav) return;
+
   if (user) {
-    const nav = document.querySelector(".nav-links");
     nav.innerHTML = `
-      <span>Hi, ${user.name}</span>
+      <span style="color:white;">Hi, ${user.name}</span>
       <a href="#" onclick="logout()">Logout</a>
     `;
   }
