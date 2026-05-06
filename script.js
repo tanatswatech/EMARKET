@@ -93,16 +93,8 @@ function confirmDelivery() {
   alert("Your product is on the way 🚚");
 }
 function registerSeller() {
-  const name = document.getElementById("sName").value;
-  const shopName = document.getElementById("shopName").value;
-  const residence = document.getElementById("residence").value;
-  const nationalId = document.getElementById("nationalId").value;
-  const category = document.getElementById("category").value;
-
-  if (!name || !shopName || !residence || !nationalId || !category) {
-    alert("Fill all fields");
-    return;
-  }
+  alert("REGISTER SHOP WORKS");
+}
 
   // GENERATE SHOP ID
   const shopId = "SHOP-" + Math.floor(Math.random() * 100000);
