@@ -197,4 +197,20 @@ function displayProducts(products) {
     productList.appendChild(div);
   });
 }
+function showUser() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+  if (user) {
+    const nav = document.querySelector(".nav-links");
+    nav.innerHTML = `
+      <span>Hi, ${user.name}</span>
+      <a href="#" onclick="logout()">Logout</a>
+    `;
+  }
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  location.reload();
+}
 
