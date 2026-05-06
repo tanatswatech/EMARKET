@@ -5,7 +5,7 @@ function buyProduct() {
 
   setTimeout(() => {
     bar.style.width = "0%";
-    alert("Next: Register/Login page");
+    window.location.href = "register.html";
   }, 1200);
 }
 function registerUser() {
