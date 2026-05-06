@@ -242,14 +242,15 @@ function logoutSeller() {
    REELS
 ======================= */
 function addReel() {
-  const url = document.getElementById("reelUrl")?.value;
+  const url = document.getElementById("reelUrl").value;
 
   if (!url) {
-    alert("Enter reel URL");
+    alert("Enter YouTube link");
     return;
   }
 
   let reels = JSON.parse(localStorage.getItem("reels")) || [];
+
   reels.push(url);
 
   localStorage.setItem("reels", JSON.stringify(reels));
@@ -257,7 +258,6 @@ function addReel() {
   alert("Reel added!");
   loadReels();
 }
-
 function loadReels() {
   const reelList = document.getElementById("reelList");
   if (!reelList) return;
@@ -267,15 +267,23 @@ function loadReels() {
   reelList.innerHTML = "";
 
   reels.forEach(url => {
-    const video = document.createElement("video");
-    video.src = url;
-    video.controls = true;
-    video.width = 150;
+    const videoId = extractYouTubeID(url);
 
-    reelList.appendChild(video);
+    if (!videoId) return;
+
+    const iframe = document.createElement("iframe");
+
+    iframe.width = "200";
+    iframe.height = "350";
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.frameBorder = "0";
+    iframe.allow =
+      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+
+    reelList.appendChild(iframe);
   });
 }
-
 /* =======================
    INIT (IMPORTANT)
 ======================= */
@@ -300,3 +308,11 @@ window.addProduct = addProduct;
 window.addReel = addReel;
 window.filterProducts = filterProducts;
 window.logoutSeller = logoutSeller;
+function extractYouTubeID(url) {
+  const regex =
+    /(?:youtube\.com.*(?:\\?|&)v=|youtu\.be\\/)([a-zA-Z0-9_-]{11})/;
+
+  const match = url.match(regex);
+
+  return match ? match[1] : null;
+}
