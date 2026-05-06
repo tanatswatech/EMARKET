@@ -1,4 +1,4 @@
-alert("EXTERNAL JS WORKING");
+alert("CONNECTED ✅");
 function buyProduct() {
   alert("BUY CLICKED");
 
