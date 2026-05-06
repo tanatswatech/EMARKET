@@ -231,14 +231,14 @@ function logoutSeller() {
   localStorage.removeItem("seller");
   window.location.href = "index.html";
 }
-
 function updateStats() {
-  const products = JSON.parse(localStorage.getItem("products")) || [];
   const el = document.getElementById("totalProducts");
 
-  if (el) {
-    el.innerText = "Products: " + products.length;
-  }
+  if (!el) return;
+
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+
+  el.innerText = "Products: " + products.length;
 }
 function addReel() {
   const url = document.getElementById("reelUrl").value;
