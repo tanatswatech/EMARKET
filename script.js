@@ -271,4 +271,5 @@ function loadReels() {
 
     reelList.appendChild(video);
   });
+  console.log("Loading reels...");
 }
