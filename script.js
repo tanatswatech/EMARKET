@@ -164,6 +164,7 @@ function addProduct() {
 }
 window.onload = function () {
   loadProducts();
+  showUser();
 };
 function loadProducts() {
   const products = JSON.parse(localStorage.getItem("products")) || [];
