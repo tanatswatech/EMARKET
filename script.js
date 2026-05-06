@@ -1,4 +1,4 @@
-
+alert("JS WORKING");
 function buyProduct() {
   alert("BUY CLICKED");
 
