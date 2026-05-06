@@ -235,3 +235,19 @@ function updateStats() {
     el.innerText = "Products: " + products.length;
   }
 }
+function addReel() {
+  const url = document.getElementById("reelUrl").value;
+
+  if (!url) {
+    alert("Enter video URL");
+    return;
+  }
+
+  let reels = JSON.parse(localStorage.getItem("reels")) || [];
+
+  reels.push(url);
+
+  localStorage.setItem("reels", JSON.stringify(reels));
+
+  alert("Reel added!");
+}
