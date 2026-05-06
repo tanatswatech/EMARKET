@@ -342,3 +342,20 @@ function extractYouTubeID(url) {
     return null;
   }
 }
+let currentSlide = 0;
+
+function startHeroSlider() {
+  const slides = document.querySelectorAll(".hero-slider .slide");
+
+  if (!slides.length) return;
+
+  setInterval(() => {
+    slides[currentSlide].classList.remove("active");
+
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+  }, 3000);
+}
+
+document.addEventListener("DOMContentLoaded", startHeroSlider);
