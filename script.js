@@ -63,3 +63,10 @@ function pay() {
     window.location.href = "receipt.html";
   }, 1500);
 }
+function goDelivery() {
+  window.location.href = "delivery.html";
+}
+
+function confirmDelivery() {
+  alert("Your product is on the way 🚚");
+}
