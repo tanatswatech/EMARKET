@@ -124,3 +124,16 @@ button {
   padding: 10px;
   margin: 10px 0;
 }
+.categories {
+  text-align: center;
+  margin: 20px;
+}
+
+.categories button {
+  margin: 5px;
+  padding: 10px;
+  background: var(--dark);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
