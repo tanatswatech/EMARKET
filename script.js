@@ -100,3 +100,21 @@ function registerSeller() {
 
   window.location.href = "seller-login.html";
 }
+function loginSeller() {
+  const shopId = document.getElementById("loginShopId").value;
+  const name = document.getElementById("loginName").value;
+
+  const seller = JSON.parse(localStorage.getItem("seller"));
+
+  if (!seller) {
+    alert("No seller found. Register first.");
+    return;
+  }
+
+  if (shopId === seller.shopId && name === seller.name) {
+    alert("Login successful!");
+    window.location.href = "seller-dashboard.html";
+  } else {
+    alert("Invalid details");
+  }
+}
