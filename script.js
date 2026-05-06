@@ -26,30 +26,11 @@ function registerUser() {
   const user = { name, surname, email, password };
 
   localStorage.setItem("user", JSON.stringify(user));
-
-  // ✅ KEEP USER LOGGED IN
   localStorage.setItem("loggedInUser", JSON.stringify(user));
 
   alert("Registered successfully!");
 
-  // ✅ GO BACK TO HOMEPAGE
   window.location.href = "index.html";
-}
-
-  const user = {
-    name,
-    surname,
-    email,
-    password
-  };
-
-  // SAVE USER (LOCAL STORAGE)
-  localStorage.setItem("user", JSON.stringify(user));
-
-  alert("Registered successfully!");
-
-  // GO TO CHECKOUT (next step)
-  window.location.href = "checkout.html";
 }
 function loginUser() {
   const email = document.getElementById("loginEmail").value;
@@ -93,9 +74,34 @@ function confirmDelivery() {
   alert("Your product is on the way 🚚");
 }
 function registerSeller() {
-  alert("REGISTER SHOP WORKS");
-}
+  const name = document.getElementById("sName").value;
+  const shopName = document.getElementById("shopName").value;
+  const residence = document.getElementById("residence").value;
+  const nationalId = document.getElementById("nationalId").value;
+  const category = document.getElementById("category").value;
 
+  if (!name || !shopName || !residence || !nationalId || !category) {
+    alert("Fill all fields");
+    return;
+  }
+
+  const shopId = "SHOP-" + Math.floor(Math.random() * 100000);
+
+  const seller = {
+    name,
+    shopName,
+    residence,
+    nationalId,
+    category,
+    shopId
+  };
+
+  localStorage.setItem("seller", JSON.stringify(seller));
+
+  alert("Shop Registered! Your Shop ID is: " + shopId);
+
+  window.location.href = "seller-login.html";
+}
   // GENERATE SHOP ID
   const shopId = "SHOP-" + Math.floor(Math.random() * 100000);
 
