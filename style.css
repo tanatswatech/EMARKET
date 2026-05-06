@@ -137,3 +137,18 @@ button {
   border: none;
   cursor: pointer;
 }
+.dashboard {
+  width: 300px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+}
+
+.dashboard button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+video {
+  border-radius: 10px;
+}
