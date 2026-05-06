@@ -1,22 +1,30 @@
-alert("CONNECTED ✅");
+console.log("SCRIPT LOADED ✅");
+
+/* =======================
+   BUY SYSTEM
+======================= */
 function buyProduct() {
   alert("BUY CLICKED");
 
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
   if (!user) {
-    alert("NOT LOGGED IN");
+    alert("NOT LOGGED IN → Redirecting");
     window.location.href = "register.html";
   } else {
     alert("LOGGED IN");
     window.location.href = "checkout.html";
   }
 }
+
+/* =======================
+   USER REGISTER
+======================= */
 function registerUser() {
-  const name = document.getElementById("name").value;
-  const surname = document.getElementById("surname").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const name = document.getElementById("name")?.value;
+  const surname = document.getElementById("surname")?.value;
+  const email = document.getElementById("email")?.value;
+  const password = document.getElementById("password")?.value;
 
   if (!name || !surname || !email || !password) {
     alert("Please fill all fields");
@@ -29,59 +37,44 @@ function registerUser() {
   localStorage.setItem("loggedInUser", JSON.stringify(user));
 
   alert("Registered successfully!");
-
   window.location.href = "index.html";
 }
+
+/* =======================
+   USER LOGIN
+======================= */
 function loginUser() {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
+  const email = document.getElementById("loginEmail")?.value;
+  const password = document.getElementById("loginPassword")?.value;
 
   const savedUser = JSON.parse(localStorage.getItem("user"));
 
   if (!savedUser) {
-    alert("No user found. Register first.");
+    alert("No user found");
     return;
   }
 
   if (email === savedUser.email && password === savedUser.password) {
-
-    // ✅ SAVE LOGIN SESSION
     localStorage.setItem("loggedInUser", JSON.stringify(savedUser));
-
-    alert("Login successful!");
+    alert("Login successful");
     window.location.href = "index.html";
-
   } else {
-    alert("Invalid login details");
+    alert("Invalid login");
   }
 }
-function pay() {
-  const bar = document.getElementById("loadingBar");
 
-  bar.style.width = "100%";
-
-  setTimeout(() => {
-    bar.style.width = "0%";
-    alert("Payment Successful!");
-    window.location.href = "receipt.html";
-  }, 1500);
-}
-function goDelivery() {
-  window.location.href = "delivery.html";
-}
-
-function confirmDelivery() {
-  alert("Your product is on the way 🚚");
-}
+/* =======================
+   SELLER REGISTER
+======================= */
 function registerSeller() {
-  const name = document.getElementById("sName").value;
-  const shopName = document.getElementById("shopName").value;
-  const residence = document.getElementById("residence").value;
-  const nationalId = document.getElementById("nationalId").value;
-  const category = document.getElementById("category").value;
+  const name = document.getElementById("sName")?.value;
+  const shopName = document.getElementById("shopName")?.value;
+  const residence = document.getElementById("residence")?.value;
+  const nationalId = document.getElementById("nationalId")?.value;
+  const category = document.getElementById("category")?.value;
 
   if (!name || !shopName || !residence || !nationalId || !category) {
-    alert("Fill all fields");
+    alert("Fill all seller fields");
     return;
   }
 
@@ -98,54 +91,43 @@ function registerSeller() {
 
   localStorage.setItem("seller", JSON.stringify(seller));
 
-  alert("Shop Registered! Your Shop ID is: " + shopId);
-
+  alert("Shop Registered! ID: " + shopId);
   window.location.href = "seller-login.html";
 }
-  // GENERATE SHOP ID
-  const shopId = "SHOP-" + Math.floor(Math.random() * 100000);
 
-  const seller = {
-    name,
-    shopName,
-    residence,
-    nationalId,
-    category,
-    shopId
-  };
-
-  localStorage.setItem("seller", JSON.stringify(seller));
-
-  alert("Shop Registered! Your Shop ID is: " + shopId);
-
-  window.location.href = "seller-login.html";
-}
+/* =======================
+   SELLER LOGIN
+======================= */
 function loginSeller() {
-  const shopId = document.getElementById("loginShopId").value;
-  const name = document.getElementById("loginName").value;
+  const shopId = document.getElementById("loginShopId")?.value;
+  const name = document.getElementById("loginName")?.value;
 
   const seller = JSON.parse(localStorage.getItem("seller"));
 
   if (!seller) {
-    alert("No seller found. Register first.");
+    alert("No seller found");
     return;
   }
 
   if (shopId === seller.shopId && name === seller.name) {
-    alert("Login successful!");
+    alert("Seller login successful");
     window.location.href = "seller-dashboard.html";
   } else {
-    alert("Invalid details");
+    alert("Invalid seller details");
   }
 }
+
+/* =======================
+   PRODUCTS
+======================= */
 function addProduct() {
-  const name = document.getElementById("pName").value;
-  const price = document.getElementById("pPrice").value;
-  const image = document.getElementById("pImage").value;
-  const category = document.getElementById("pCategory").value;
+  const name = document.getElementById("pName")?.value;
+  const price = document.getElementById("pPrice")?.value;
+  const image = document.getElementById("pImage")?.value;
+  const category = document.getElementById("pCategory")?.value;
 
   if (!name || !price || !image || !category) {
-    alert("Fill all fields");
+    alert("Fill all product fields");
     return;
   }
 
@@ -157,61 +139,79 @@ function addProduct() {
   };
 
   let products = JSON.parse(localStorage.getItem("products")) || [];
-
   products.push(product);
 
   localStorage.setItem("products", JSON.stringify(products));
 
   alert("Product added!");
-}
-document.addEventListener("DOMContentLoaded", function () {
   loadProducts();
-  showUser();
-  updateStats();
-  loadReels();
-});
+}
+
 function loadProducts() {
-  const products = JSON.parse(localStorage.getItem("products")) || [];
-  displayProducts(products);
-}
-function filterProducts(category) {
-  const products = JSON.parse(localStorage.getItem("products")) || [];
-
-  const filtered = products.filter(p => p.category === category);
-
-  displayProducts(category === "all" ? products : filtered);
-}
-function displayProducts(products) {
   const productList = document.getElementById("productList");
-
   if (!productList) return;
+
+  const products = JSON.parse(localStorage.getItem("products")) || [];
 
   productList.innerHTML = "";
 
-  products.forEach(product => {
+  products.forEach(p => {
     const div = document.createElement("div");
     div.className = "product-card";
 
     div.innerHTML = `
-      <img src="${product.image}" style="width:100%; height:120px;">
-      <h3>${product.name}</h3>
-      <p>$${product.price}</p>
+      <img src="${p.image}" width="100%">
+      <h3>${p.name}</h3>
+      <p>$${p.price}</p>
       <button onclick="buyProduct()">Buy</button>
     `;
 
     productList.appendChild(div);
   });
 }
+
+function filterProducts(category) {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+
+  if (category === "all") {
+    loadProducts();
+    return;
+  }
+
+  const filtered = products.filter(p => p.category === category);
+
+  const productList = document.getElementById("productList");
+  if (!productList) return;
+
+  productList.innerHTML = "";
+
+  filtered.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "product-card";
+
+    div.innerHTML = `
+      <img src="${p.image}" width="100%">
+      <h3>${p.name}</h3>
+      <p>$${p.price}</p>
+      <button onclick="buyProduct()">Buy</button>
+    `;
+
+    productList.appendChild(div);
+  });
+}
+
+/* =======================
+   USER DISPLAY
+======================= */
 function showUser() {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
-
   const nav = document.querySelector(".nav-links");
 
   if (!nav) return;
 
   if (user) {
     nav.innerHTML = `
-      <span style="color:white;">Hi, ${user.name}</span>
+      <span>Hi, ${user.name}</span>
       <a href="#" onclick="logout()">Logout</a>
     `;
   }
@@ -221,38 +221,45 @@ function logout() {
   localStorage.removeItem("loggedInUser");
   location.reload();
 }
+
+/* =======================
+   SELLER DASHBOARD
+======================= */
+function updateStats() {
+  const el = document.getElementById("totalProducts");
+  if (!el) return;
+
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  el.innerText = "Products: " + products.length;
+}
+
 function logoutSeller() {
   localStorage.removeItem("seller");
   window.location.href = "index.html";
 }
-function updateStats() {
-  const el = document.getElementById("totalProducts");
 
-  if (!el) return;
-
-  const products = JSON.parse(localStorage.getItem("products")) || [];
-
-  el.innerText = "Products: " + products.length;
-}
+/* =======================
+   REELS
+======================= */
 function addReel() {
-  const url = document.getElementById("reelUrl").value;
+  const url = document.getElementById("reelUrl")?.value;
 
   if (!url) {
-    alert("Enter video URL");
+    alert("Enter reel URL");
     return;
   }
 
   let reels = JSON.parse(localStorage.getItem("reels")) || [];
-
   reels.push(url);
 
   localStorage.setItem("reels", JSON.stringify(reels));
 
   alert("Reel added!");
+  loadReels();
 }
+
 function loadReels() {
   const reelList = document.getElementById("reelList");
-
   if (!reelList) return;
 
   const reels = JSON.parse(localStorage.getItem("reels")) || [];
@@ -261,15 +268,35 @@ function loadReels() {
 
   reels.forEach(url => {
     const video = document.createElement("video");
-
     video.src = url;
     video.controls = true;
     video.width = 150;
 
     reelList.appendChild(video);
   });
-  console.log("Loading reels...");
 }
+
+/* =======================
+   INIT (IMPORTANT)
+======================= */
+document.addEventListener("DOMContentLoaded", function () {
+  loadProducts();
+  showUser();
+  updateStats();
+  loadReels();
+});
+
+/* =======================
+   GLOBAL EXPORTS (CRITICAL)
+======================= */
+window.buyProduct = buyProduct;
+window.registerUser = registerUser;
+window.loginUser = loginUser;
+
 window.registerSeller = registerSeller;
 window.loginSeller = loginSeller;
-window.buyProduct = buyProduct;
+
+window.addProduct = addProduct;
+window.addReel = addReel;
+window.filterProducts = filterProducts;
+window.logoutSeller = logoutSeller;
