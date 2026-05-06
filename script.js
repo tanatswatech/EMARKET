@@ -266,30 +266,33 @@ function loadReels() {
 
   reelList.innerHTML = "";
 
+  if (reels.length === 0) {
+    reelList.innerHTML = "<p>No reels yet</p>";
+    return;
+  }
+
   reels.forEach(url => {
     const videoId = extractYouTubeID(url);
 
-    const wrapper = document.createElement("div");
-    wrapper.style.margin = "10px";
+    const card = document.createElement("div");
+    card.style.margin = "10px";
 
     if (!videoId) {
-      wrapper.innerHTML = `<p>Invalid YouTube link</p>`;
-      reelList.appendChild(wrapper);
+      card.innerHTML = "<p>Invalid YouTube link</p>";
+      reelList.appendChild(card);
       return;
     }
 
     const iframe = document.createElement("iframe");
-
-    iframe.width = "250";
-    iframe.height = "400";
+    iframe.width = "280";
+    iframe.height = "450";
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
-    iframe.frameBorder = "0";
-    iframe.allow =
-      "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
     iframe.allowFullscreen = true;
+    iframe.frameBorder = "0";
+    iframe.style.borderRadius = "10px";
 
-    wrapper.appendChild(iframe);
-    reelList.appendChild(wrapper);
+    card.appendChild(iframe);
+    reelList.appendChild(card);
   });
 }
 /* =======================
@@ -317,10 +320,25 @@ window.addReel = addReel;
 window.filterProducts = filterProducts;
 window.logoutSeller = logoutSeller;
 function extractYouTubeID(url) {
-  const regex =
-    /(?:youtu\.be\/|youtube\.com.*[?&]v=|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;
+  try {
+    const u = new URL(url);
 
-  const match = url.match(regex);
+    // youtu.be/k8UOCTWNbMI
+    if (u.hostname.includes("youtu.be")) {
+      return u.pathname.slice(1);
+    }
 
-  return match ? match[1] : null;
+    // youtube.com/watch?v=XXXX
+    if (u.searchParams.get("v")) {
+      return u.searchParams.get("v");
+    }
+
+    // youtube.com/shorts/XXXX
+    const shortsMatch = url.match(/shorts\/([a-zA-Z0-9_-]{11})/);
+    if (shortsMatch) return shortsMatch[1];
+
+    return null;
+  } catch (e) {
+    return null;
+  }
 }
