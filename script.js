@@ -1,19 +1,16 @@
+
 function buyProduct() {
+  alert("BUY CLICKED");
+
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  const bar = document.getElementById("loadingBar");
-
-  if (bar) bar.style.width = "100%";
-
-  setTimeout(() => {
-    if (bar) bar.style.width = "0%";
-
-    if (!user) {
-      window.location.href = "register.html";
-    } else {
-      window.location.href = "checkout.html";
-    }
-  }, 1200);
+  if (!user) {
+    alert("NOT LOGGED IN");
+    window.location.href = "register.html";
+  } else {
+    alert("LOGGED IN");
+    window.location.href = "checkout.html";
+  }
 }
 function registerUser() {
   const name = document.getElementById("name").value;
