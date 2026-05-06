@@ -173,7 +173,9 @@ window.onload = function () {
   loadProducts();
   showUser();
   updateStats();
+  loadReels();
 };
+
 function loadProducts() {
   const products = JSON.parse(localStorage.getItem("products")) || [];
   displayProducts(products);
@@ -250,4 +252,23 @@ function addReel() {
   localStorage.setItem("reels", JSON.stringify(reels));
 
   alert("Reel added!");
+}
+function loadReels() {
+  const reelList = document.getElementById("reelList");
+  if (!reelList) return;
+
+  const reels = JSON.parse(localStorage.getItem("reels")) || [];
+
+  reelList.innerHTML = "";
+
+  reels.forEach(url => {
+    const div = document.createElement("div");
+    div.className = "reel";
+
+    div.innerHTML = `
+      <video src="${url}" controls width="150"></video>
+    `;
+
+    reelList.appendChild(div);
+  });
 }
