@@ -1,11 +1,18 @@
 function buyProduct() {
-  const bar = document.getElementById("loadingBar");
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
+  const bar = document.getElementById("loadingBar");
   bar.style.width = "100%";
 
   setTimeout(() => {
     bar.style.width = "0%";
-    window.location.href = "register.html";
+
+    if (!user) {
+      window.location.href = "register.html";
+    } else {
+      window.location.href = "checkout.html";
+    }
+
   }, 1200);
 }
 function registerUser() {
