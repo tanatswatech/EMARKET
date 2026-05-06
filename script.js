@@ -221,4 +221,16 @@ function logout() {
   localStorage.removeItem("loggedInUser");
   location.reload();
 }
+function logoutSeller() {
+  localStorage.removeItem("seller");
+  window.location.href = "index.html";
+}
 
+function updateStats() {
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const el = document.getElementById("totalProducts");
+
+  if (el) {
+    el.innerText = "Products: " + products.length;
+  }
+}
