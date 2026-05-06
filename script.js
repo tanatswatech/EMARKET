@@ -166,13 +166,12 @@ function addProduct() {
 
   alert("Product added!");
 }
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
   loadProducts();
   showUser();
   updateStats();
   loadReels();
-};
-
+});
 function loadProducts() {
   const products = JSON.parse(localStorage.getItem("products")) || [];
   displayProducts(products);
