@@ -284,8 +284,8 @@ function loadReels() {
     }
 
     const iframe = document.createElement("iframe");
-    iframe.width = "280";
-    iframe.height = "450";
+    iframe.width = "100%";
+    iframe.height = "100%";
     iframe.src = `https://www.youtube.com/embed/${videoId}`;
     iframe.allowFullscreen = true;
     iframe.frameBorder = "0";
