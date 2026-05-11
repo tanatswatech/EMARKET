@@ -496,3 +496,186 @@ button:hover {
     width: 90%;
   }
 }
+/* =========================
+   PAGE ANIMATIONS
+========================= */
+.fade-in {
+  animation: fadeIn 0.7s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   GLASS CARDS
+========================= */
+.glass-card {
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
+
+  padding: 20px;
+}
+
+/* =========================
+   SECTION TITLES
+========================= */
+.section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+
+  text-shadow:
+    0 0 15px rgba(255,102,0,0.5);
+}
+
+/* =========================
+   INPUTS
+========================= */
+input,
+select {
+  width: 100%;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: none;
+
+  outline: none;
+
+  margin-bottom: 12px;
+
+  background: rgba(255,255,255,0.1);
+
+  color: white;
+}
+
+/* =========================
+   RECEIPT CARD
+========================= */
+.receipt-card {
+  max-width: 400px;
+
+  margin: 40px auto;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* =========================
+   CHECKOUT
+========================= */
+.checkout-container {
+  max-width: 500px;
+
+  margin: 40px auto;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   PAYMENT OPTIONS
+========================= */
+.payment-options {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.payment-card {
+  padding: 20px;
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  background: rgba(255,255,255,0.08);
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.payment-card:hover {
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 20px rgba(255,102,0,0.3);
+}
+
+/* =========================
+   DELIVERY PAGE
+========================= */
+.delivery-box {
+  max-width: 450px;
+
+  margin: 50px auto;
+
+  padding: 25px;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(10px);
+}
+
+/* =========================
+   SELLER STATS
+========================= */
+.stats-box {
+  padding: 15px;
+
+  border-radius: 15px;
+
+  margin-bottom: 15px;
+
+  background: rgba(255,255,255,0.08);
+
+  text-align: center;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6600;
+  border-radius: 20px;
+}
