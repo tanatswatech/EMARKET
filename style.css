@@ -753,3 +753,60 @@ select {
   width: 100%;
   margin-top: 10px;
 }
+/* =========================
+  height: 180px;
+
+  object-fit: cover;
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+.product-info {
+  padding: 15px;
+}
+
+.product-info h3 {
+  font-size: 17px;
+
+  margin: 0;
+}
+
+.product-info p {
+  color: #ffb066;
+
+  font-weight: bold;
+}
+
+/* =========================
+   ICON ROW
+========================= */
+.icon-row {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+  font-size: 18px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.cart-btn {
+  width: 100%;
+
+  margin-top: 10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width: 900px) {
+
+  .market-layout {
+    grid-template-columns: 1fr;
+  }
+
+}
