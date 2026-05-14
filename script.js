@@ -353,21 +353,26 @@ function loadProducts() {
 ========================= */
 function displayProducts(products) {
 
-  const productList =
-    document.getElementById("productList");
+  const localProducts =
+    document.getElementById("localProducts");
 
-  if (!productList) return;
+  const internationalProducts =
+    document.getElementById("internationalProducts");
 
-  productList.innerHTML = "";
+  if (!localProducts || !internationalProducts) return;
+
+  localProducts.innerHTML = "";
+  internationalProducts.innerHTML = "";
 
   products.forEach(product => {
 
     const div =
       document.createElement("div");
 
-    div.className = "product-card";
+    div.className = "product-card fade-in";
 
     div.innerHTML = `
+
       <img src="${product.image}">
 
       <div class="product-info">
@@ -375,6 +380,15 @@ function displayProducts(products) {
         <h3>${product.name}</h3>
 
         <p>$${product.price}</p>
+
+        <div class="icon-row">
+
+          <span>🔥</span>
+          <span>⭐</span>
+          <span>🛒</span>
+          <span>🚚</span>
+
+        </div>
 
         <button
           class="cart-btn"
@@ -393,9 +407,21 @@ function displayProducts(products) {
         </button>
 
       </div>
+
     `;
 
-    productList.appendChild(div);
+    if (
+      product.category &&
+      product.category.toLowerCase() === "local"
+    ) {
+
+      localProducts.appendChild(div);
+
+    } else {
+
+      internationalProducts.appendChild(div);
+
+    }
 
   });
 
@@ -419,7 +445,9 @@ function filterProducts(category) {
 
   const filtered =
     products.filter(
-      p => p.category.toLowerCase() === category
+      p =>
+        p.category &&
+        p.category.toLowerCase() === category
     );
 
   displayProducts(filtered);
@@ -683,3 +711,4 @@ window.pay = pay;
 window.goDelivery = goDelivery;
 
 window.confirmDelivery = confirmDelivery;
+
