@@ -1,95 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <title>E-Market</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- CONNECT CSS -->
-  <link rel="stylesheet" href="style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>EMARKET</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet"
+    href="style.css">
+
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
-  <h2 class="logo">E-Market</h2>
+<!-- =========================
+     NAVBAR
+========================= -->
 
-  <input type="text" placeholder="Search products...">
+<header class="navbar">
+
+  <div class="logo-area">
+
+    <h2 class="logo">
+      E-MARKET
+    </h2>
+
+    <span class="logo-badge">
+      PRO
+    </span>
+
+  </div>
+
+  <div class="search-box">
+
+    <input
+      type="text"
+      placeholder="Search products, brands and categories...">
+
+  </div>
 
   <div class="nav-links">
-    <a href="login.html">Login</a>
-<a href="register.html">Register</a>
-<a href="seller-register.html" class="seller-btn">Sell</a>
+
+    <a href="login.html">
+      Login
+    </a>
+
+    <a href="register.html">
+      Register
+    </a>
+
+    <a
+      href="seller-register.html"
+      class="seller-btn">
+
+      Become Seller
+
+    </a>
+
   </div>
+
 </header>
 
-<!-- SLIDER -->
-<div class="hero-wrapper">
+<!-- =========================
+     HERO SECTION
+========================= -->
+
+<section class="hero-wrapper">
 
   <div class="hero-overlay">
-    <h1>Welcome to EMARKET</h1>
-    <p>Shop Local & International Products</p>
 
-    <button>Shop Now</button>
+    <h1>
+      Welcome To EMARKET
+    </h1>
+
+    <p>
+      Shop Local & International Products
+      With Fast Delivery 🚚
+    </p>
+
+    <button onclick="window.scrollTo(0,700)">
+
+      Start Shopping
+
+    </button>
+
   </div>
 
   <div class="hero-track">
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9')">
-</div>
 
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853')">
-</div>
+    <!-- HERO IMAGES -->
 
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e')">
-</div>
-
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1523275335684-37898b6baf30')">
-</div>
     <div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9')">
-</div>
-
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853')">
-</div>
-
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e')">
-</div>
-
-<div class="hero-item"
-style="background-image:url('https://images.unsplash.com/photo-1523275335684-37898b6baf30')">
-</div>
-    <div class="hero-item"
-      style="background-image:url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200');">
+      style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9');">
     </div>
 
     <div class="hero-item"
-      style="background-image:url('https://images.unsplash.com/photo-1517336714739-489689fd1ca8?q=80&w=1200');">
+      style="background-image:url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853');">
     </div>
 
     <div class="hero-item"
-      style="background-image:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200');">
+      style="background-image:url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e');">
     </div>
 
     <div class="hero-item"
-      style="background-image:url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200');">
+      style="background-image:url('https://images.unsplash.com/photo-1523275335684-37898b6baf30');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1517336714739-489689fd1ca8');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1585386959984-a4155224a1ad');">
+    </div>
+
+    <!-- DUPLICATE FOR SMOOTH LOOP -->
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e');">
+    </div>
+
+    <div class="hero-item"
+      style="background-image:url('https://images.unsplash.com/photo-1523275335684-37898b6baf30');">
     </div>
 
   </div>
 
-</div>
-<!-- PRODUCTS -->
-  <div class="market-toggle">
+</section>
 
-  <button
-    class="market-btn active-market">
+<!-- =========================
+     MARKET TOGGLE
+========================= -->
+
+<div class="market-toggle">
+
+  <button class="market-btn active-market">
 
     🇿🇼 National Market
 
@@ -100,6 +179,13 @@ style="background-image:url('https://images.unsplash.com/photo-1523275335684-378
     🌍 International Market
 
   </button>
+
+</div>
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
 <section class="categories">
 
   <button onclick="filterProducts('all')">
@@ -111,11 +197,11 @@ style="background-image:url('https://images.unsplash.com/photo-1523275335684-378
   </button>
 
   <button onclick="filterProducts('beauty')">
-    Beauty
+    Beauty & Personal Care
   </button>
 
   <button onclick="filterProducts('electronics')">
-    Electronics
+    Electronics & Gadgets
   </button>
 
   <button onclick="filterProducts('furniture')">
@@ -123,7 +209,7 @@ style="background-image:url('https://images.unsplash.com/photo-1523275335684-378
   </button>
 
   <button onclick="filterProducts('toys')">
-    Toys
+    Toys & Kids
   </button>
 
   <button onclick="filterProducts('gaming')">
@@ -134,56 +220,155 @@ style="background-image:url('https://images.unsplash.com/photo-1523275335684-378
     Phones
   </button>
 
-  <button onclick="filterProducts('cars')">
-    Vehicles
-  </button>
-
   <button onclick="filterProducts('sports')">
     Sports
   </button>
 
-</section>
-</div>
-  <section class="categories">
-  <button onclick="filterProducts('all')">All</button>
-  <button onclick="filterProducts('bikes')">Bikes</button>
-  <button onclick="filterProducts('electronics')">Electronics</button>
-</section>
-<section class="products-section fade-in">
+  <button onclick="filterProducts('cars')">
+    Vehicles
+  </button>
 
-  <h2 class="section-title">🔥 Trending Products</h2>
-  <div class="product-grid" id="productList"></div>
+  <button onclick="filterProducts('luxury')">
+    Luxury
+  </button>
 
 </section>
 
-<section class="products-section fade-in">
+<!-- =========================
+     TRENDING PRODUCTS
+========================= -->
 
-  <h2 class="section-title">🇿🇼 Local Market</h2>
-  <div class="product-grid" id="localProducts"></div>
+<section class="market-section">
 
-</section>
+  <h2 class="market-title">
 
-<section class="products-section fade-in">
+    🔥 Trending Products
 
-  <h2 class="section-title">🌍 International Market</h2>
-  <div class="product-grid" id="internationalProducts"></div>
+  </h2>
 
-</section>
-
-<!-- REELS -->
-<section class="reels">
-
-  <div class="reels-container" id="reelList">
+  <div
+    class="product-grid"
+    id="productList">
 
   </div>
 
 </section>
 
-<!-- LOADING BAR -->
+<!-- =========================
+     LOCAL MARKET
+========================= -->
+
+<section class="market-section">
+
+  <h2 class="market-title">
+
+    🇿🇼 National Market
+
+  </h2>
+
+  <div
+    class="product-grid"
+    id="localProducts">
+
+  </div>
+
+</section>
+
+<!-- =========================
+     INTERNATIONAL MARKET
+========================= -->
+
+<section class="market-section">
+
+  <h2 class="market-title">
+
+    🌍 International Market
+
+  </h2>
+
+  <div
+    class="product-grid"
+    id="internationalProducts">
+
+  </div>
+
+</section>
+
+<!-- =========================
+     REELS
+========================= -->
+
+<section class="reels">
+
+  <h2 class="market-title">
+
+    📱 Trending Reels
+
+  </h2>
+
+  <div
+    class="reels-container"
+    id="reelList">
+
+  </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  <div class="footer-content">
+
+    <div>
+
+      <h3>EMARKET</h3>
+
+      <p>
+        The future of African digital commerce.
+      </p>
+
+    </div>
+
+    <div>
+
+      <h4>Quick Links</h4>
+
+      <p>Home</p>
+      <p>Products</p>
+      <p>Categories</p>
+      <p>Reels</p>
+
+    </div>
+
+    <div>
+
+      <h4>Payments</h4>
+
+      <p>Visa</p>
+      <p>Mastercard</p>
+      <p>EcoCash</p>
+      <p>Innbucks</p>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- =========================
+     LOADING BAR
+========================= -->
+
 <div id="loadingBar"></div>
 
-<!-- CONNECT JS -->
-  <script src="script.js?v=2"></script>
+<!-- =========================
+     SCRIPT
+========================= -->
+
+<script src="script.js?v=10"></script>
+
 </body>
 </html>
-
