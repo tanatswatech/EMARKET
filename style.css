@@ -1092,4 +1092,26 @@ button:hover {
   }
 
 }
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
 
+/* ICON ROW IMPROVED */
+.icon-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* PRODUCT CARD POLISH */
+.product-card {
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
