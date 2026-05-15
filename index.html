@@ -115,13 +115,15 @@
     <div class="hero-buttons">
 
       <button
-        onclick="window.scrollTo(0,900)">
+        onclick="window.scrollTo(0,850)">
 
         Start Shopping
 
       </button>
 
-      <button class="hero-outline">
+      <button
+        class="hero-outline"
+        onclick="document.getElementById('reelList').scrollIntoView({behavior:'smooth'})">
 
         Watch Reels
 
@@ -193,9 +195,9 @@
      MARKET AREA
 ========================= -->
 
-<section class="market-section">
+<section class="market-layout">
 
-  <!-- LEFT REELS -->
+  <!-- REELS SIDE -->
 
   <aside class="reels-side">
 
@@ -215,7 +217,7 @@
 
   </aside>
 
-  <!-- RIGHT PRODUCTS -->
+  <!-- PRODUCTS SIDE -->
 
   <main class="products-side">
 
@@ -285,92 +287,25 @@
         Luxury
       </button>
 
+      <button onclick="filterProducts('toys')">
+        Toys
+      </button>
+
     </section>
-    <!-- =========================
-     PRODUCTS AREA
-========================= -->
 
-<section class="market-section">
+    <!-- PRODUCTS -->
 
-  <div class="section-header">
+    <section class="products-section">
 
-    <h2 class="market-title">
+      <div
+        class="product-grid"
+        id="productList">
 
-      🔥 Featured Products
+      </div>
 
-    </h2>
+    </section>
 
-    <button class="view-all-btn">
-
-      View All
-
-    </button>
-
-  </div>
-
-  <div
-    class="product-grid"
-    id="productList">
-
-  </div>
-
-</section>
-
-
-
-<!-- =========================
-     FEATURES
-========================= -->
-
-<section class="features-section">
-
-  <div class="feature-card">
-
-    <i class="fa-solid fa-truck-fast"></i>
-
-    <h3>Fast Delivery</h3>
-
-    <p>
-      Nationwide & International shipping.
-    </p>
-
-  </div>
-
-  <div class="feature-card">
-
-    <i class="fa-solid fa-shield-halved"></i>
-
-    <h3>Secure Payments</h3>
-
-    <p>
-      EcoCash, Visa, Mastercard & more.
-    </p>
-
-  </div>
-
-  <div class="feature-card">
-
-    <i class="fa-solid fa-store"></i>
-
-    <h3>Verified Sellers</h3>
-
-    <p>
-      Trusted sellers with real ratings.
-    </p>
-
-  </div>
-
-  <div class="feature-card">
-
-    <i class="fa-solid fa-headset"></i>
-
-    <h3>24/7 Support</h3>
-
-    <p>
-      We help buyers & sellers anytime.
-    </p>
-
-  </div>
+  </main>
 
 </section>
 
@@ -431,17 +366,13 @@
 
 </footer>
 
-<!-- =========================
-     LOADING BAR
-========================= -->
+<!-- LOADING BAR -->
 
 <div id="loadingBar"></div>
 
-<!-- =========================
-     SCRIPT
-========================= -->
+<!-- SCRIPT -->
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=30"></script>
 
 </body>
 </html>
