@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>EMARKET Admin</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div class="admin-login" id="adminLogin">
+
+    <div class="glass-card">
+
+      <h1>🔐 Admin Access</h1>
+
+      <input
+        type="text"
+        id="adminUser"
+        placeholder="Username">
+
+      <input
+        type="password"
+        id="adminPass"
+        placeholder="Password">
+
+      <button onclick="adminLogin()">
+
+        Enter Dashboard
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <div
+    class="admin-dashboard"
+    id="adminDashboard"
+    style="display:none;">
+
+    <aside class="sidebar">
+
+      <h2>🛒 EMARKET</h2>
+
+      <ul>
+
+        <li>📊 Dashboard</li>
+        <li>🛍 Products</li>
+        <li>👥 Users</li>
+        <li>💰 Sales</li>
+        <li>⭐ Ratings</li>
+
+      </ul>
+
+    </aside>
+
+    <main class="admin-main">
+
+      <h1>Admin Dashboard</h1>
+
+      <div class="admin-stats">
+
+        <div class="stat-card">
+          <h3 id="adminProducts">0</h3>
+          <p>Products</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 id="adminUsers">0</h3>
+          <p>Users</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>$12,500</h3>
+          <p>Sales</p>
+        </div>
+
+      </div>
+
+      <div id="adminProductList"
+        class="admin-products">
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
