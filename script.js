@@ -842,6 +842,30 @@ document.addEventListener(
 /* =========================
    GLOBAL EXPORTS
 ========================= */
+/* =========================
+   MARKET SWITCH
+========================= */
+
+function switchMarket(type) {
+
+  const buttons =
+    document.querySelectorAll(".market-btn");
+
+  buttons.forEach(btn => {
+    btn.classList.remove("active-market");
+  });
+
+  if (type === "national") {
+
+    buttons[0].classList.add("active-market");
+
+  } else {
+
+    buttons[1].classList.add("active-market");
+
+  }
+
+}
 window.buyProduct = buyProduct;
 
 window.addToCart = addToCart;
