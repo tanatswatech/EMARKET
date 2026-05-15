@@ -159,7 +159,18 @@
     </div>
 
   </div>
+<!-- END HERO -->
 
+<section class="reels">
+
+  <h2 class="reels-title">
+    🔥 Trending Reels
+  </h2>
+
+  <div class="reels-container" id="reelList"></div>
+
+</section>
+  
 </section>
 
 <!-- =========================
@@ -170,17 +181,17 @@
 
   <button
     class="market-btn active-market"
-    onclick="showMarket('local', this)">
+    onclick="switchMarket('national')">
 
-    🇿🇼 National Market
+    🇿🇼 National
 
   </button>
 
   <button
     class="market-btn"
-    onclick="showMarket('international', this)">
+    onclick="switchMarket('international')">
 
-    🌍 International Market
+    🌐 International
 
   </button>
 
@@ -237,91 +248,6 @@
 
 </section>
 
-<!-- =========================
-     TRENDING PRODUCTS
-========================= -->
-
-<section
-  class="market-section">
-
-  <h2 class="market-title">
-
-    🔥 Trending Products
-
-  </h2>
-
-  <div
-    class="product-grid"
-    id="productList">
-
-  </div>
-
-</section>
-
-<!-- =========================
-     LOCAL MARKET
-========================= -->
-
-<section
-  class="market-section"
-  id="localMarket">
-
-  <h2 class="market-title">
-
-    🇿🇼 National Market
-
-  </h2>
-
-  <div
-    class="product-grid"
-    id="localProducts">
-
-  </div>
-
-</section>
-
-<!-- =========================
-     INTERNATIONAL MARKET
-========================= -->
-
-<section
-  class="market-section"
-  id="internationalMarket"
-  style="display:none;">
-
-  <h2 class="market-title">
-
-    🌍 International Market
-
-  </h2>
-
-  <div
-    class="product-grid"
-    id="internationalProducts">
-
-  </div>
-
-</section>
-
-<!-- =========================
-     REELS
-========================= -->
-
-<section class="reels">
-
-  <h2 class="market-title">
-
-    📱 Trending Reels
-
-  </h2>
-
-  <div
-    class="reels-container"
-    id="reelList">
-
-  </div>
-
-</section>
 
 <!-- =========================
      FOOTER
