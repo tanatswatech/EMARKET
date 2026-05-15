@@ -21,18 +21,13 @@
 ========================= */
 
 * {
-
   margin: 0;
   padding: 0;
-
   box-sizing: border-box;
-
 }
 
 html {
-
   scroll-behavior: smooth;
-
 }
 
 body {
@@ -44,7 +39,6 @@ body {
   overflow-x: hidden;
 
   background:
-
     radial-gradient(
       circle at top left,
       rgba(255,102,0,0.20),
@@ -166,6 +160,14 @@ body::after {
 
   text-shadow:
     0 0 20px rgba(255,102,0,0.5);
+
+  user-select: none;
+
+}
+
+.logo:hover {
+
+  transform: scale(1.03);
 
 }
 
@@ -385,6 +387,8 @@ body::after {
 
   flex-shrink: 0;
 
+  transition: 0.4s;
+
   box-shadow:
     0 15px 40px rgba(0,0,0,0.4);
 
@@ -418,16 +422,84 @@ body::after {
 @keyframes scrollHero {
 
   0% {
-
     transform: translateX(0);
-
   }
 
   100% {
-
     transform: translateX(-50%);
-
   }
+
+}
+
+/* =========================
+   REELS SECTION
+========================= */
+
+.reels {
+
+  padding: 25px;
+
+}
+
+.reels-title {
+
+  text-align: center;
+
+  font-size: 28px;
+
+  margin-bottom: 25px;
+
+  text-shadow:
+    0 0 20px rgba(255,102,0,0.4);
+
+}
+
+.reels-container {
+
+  display: flex;
+
+  gap: 20px;
+
+  overflow-x: auto;
+
+  padding-bottom: 10px;
+
+  scroll-snap-type: x mandatory;
+
+}
+
+.reels-container::-webkit-scrollbar {
+
+  height: 6px;
+
+}
+
+.reels-container::-webkit-scrollbar-thumb {
+
+  background: var(--primary);
+
+  border-radius: 20px;
+
+}
+
+.reels-container iframe {
+
+  min-width: 320px;
+
+  width: 320px;
+
+  height: 570px;
+
+  border: none;
+
+  border-radius: 20px;
+
+  scroll-snap-align: start;
+
+  background: black;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.4);
 
 }
 
@@ -444,6 +516,8 @@ body::after {
   gap: 30px;
 
   margin-top: 40px;
+
+  margin-bottom: 20px;
 
 }
 
@@ -464,6 +538,14 @@ body::after {
   cursor: pointer;
 
   padding-bottom: 10px;
+
+  transition: 0.3s;
+
+}
+
+.market-btn:hover {
+
+  color: var(--primary);
 
 }
 
@@ -714,46 +796,6 @@ button:hover {
   width: 100%;
 
   margin-top: 12px;
-
-}
-
-/* =========================
-   REELS
-========================= */
-
-.reels {
-
-  margin-top: 60px;
-
-}
-
-.reels-container {
-
-  height: 100vh;
-
-  overflow-y: scroll;
-
-  scroll-snap-type: y mandatory;
-
-}
-
-.reels-container::-webkit-scrollbar {
-
-  display: none;
-
-}
-
-.reels-container iframe {
-
-  width: 100%;
-
-  height: 100vh;
-
-  border: none;
-
-  scroll-snap-align: start;
-
-  background: black;
 
 }
 
@@ -1071,71 +1113,21 @@ button:hover {
 
   .market-toggle {
 
-    flex-direction: column;
+    flex-direction: row;
 
-    align-items: center;
+    gap: 20px;
+
+  }
+
+  .reels-container iframe {
+
+    min-width: 260px;
+
+    width: 260px;
+
+    height: 470px;
 
   }
 
 }
-/* =========================
-   REELS TOP SECTION
-========================= */
 
-.reels {
-
-  padding: 20px;
-
-}
-
-.reels-title {
-
-  text-align: center;
-
-  font-size: 28px;
-
-  margin-bottom: 20px;
-
-  color: white;
-
-  text-shadow:
-    0 0 20px rgba(255,102,0,0.5);
-
-}
-
-.reels-container {
-
-  display: flex;
-
-  gap: 20px;
-
-  overflow-x: auto;
-
-  scroll-snap-type: x mandatory;
-
-  padding-bottom: 10px;
-
-}
-
-.reels-container iframe {
-
-  min-width: 320px;
-
-  height: 570px;
-
-  border-radius: 20px;
-
-  scroll-snap-align: start;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.4);
-
-}
-
-/* MARKET BUTTONS */
-
-.market-btn {
-
-  cursor: pointer;
-
-}
