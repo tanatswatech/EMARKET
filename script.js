@@ -380,3 +380,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+function openReels() {
+  document.getElementById("reelsOverlay").style.display = "flex";
+  loadReelsFeed();
+}
+
+function closeReels() {
+  document.getElementById("reelsOverlay").style.display = "none";
+}
