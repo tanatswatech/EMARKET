@@ -339,15 +339,176 @@ function addProduct() {
 /* =========================
    LOAD PRODUCTS
 ========================= */
+/* =========================
+   LOAD PRODUCTS
+========================= */
 function loadProducts() {
 
-  const products =
-    JSON.parse(localStorage.getItem("products")) || [];
+  let products =
+    JSON.parse(localStorage.getItem("products"));
+
+  // FIRST TIME DEMO PRODUCTS
+  if (!products || products.length === 0) {
+
+    products = [
+
+      /* ===================
+         LOCAL PRODUCTS
+      =================== */
+
+      {
+        name: "Mountain Bike",
+        price: 320,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        category: "local"
+      },
+
+      {
+        name: "Gaming Headphones",
+        price: 89,
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+        category: "local"
+      },
+
+      {
+        name: "Leather Sofa",
+        price: 540,
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc",
+        category: "local"
+      },
+
+      {
+        name: "iPhone 15 Pro",
+        price: 1200,
+        image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569",
+        category: "local"
+      },
+
+      {
+        name: "Nike Sneakers",
+        price: 140,
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        category: "local"
+      },
+
+      {
+        name: "Smart TV 55 Inch",
+        price: 790,
+        image: "https://images.unsplash.com/photo-1593784991095-a205069470b6",
+        category: "local"
+      },
+
+      {
+        name: "Office Chair",
+        price: 180,
+        image: "https://images.unsplash.com/photo-1580480055273-228ff5388ef8",
+        category: "local"
+      },
+
+      {
+        name: "Perfume Set",
+        price: 60,
+        image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539",
+        category: "local"
+      },
+
+      {
+        name: "Laptop HP Elite",
+        price: 870,
+        image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+        category: "local"
+      },
+
+      {
+        name: "PS5 Controller",
+        price: 95,
+        image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3",
+        category: "local"
+      },
+
+      /* ===================
+         INTERNATIONAL
+      =================== */
+
+      {
+        name: "Rolex Watch",
+        price: 4200,
+        image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
+        category: "international"
+      },
+
+      {
+        name: "MacBook Pro",
+        price: 2500,
+        image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8",
+        category: "international"
+      },
+
+      {
+        name: "Designer Handbag",
+        price: 980,
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3",
+        category: "international"
+      },
+
+      {
+        name: "Canon Camera",
+        price: 1600,
+        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
+        category: "international"
+      },
+
+      {
+        name: "Gaming PC",
+        price: 3200,
+        image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7",
+        category: "international"
+      },
+
+      {
+        name: "Air Jordan 4",
+        price: 430,
+        image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519",
+        category: "international"
+      },
+
+      {
+        name: "Samsung Galaxy S25",
+        price: 1400,
+        image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf",
+        category: "international"
+      },
+
+      {
+        name: "Luxury Bed",
+        price: 2500,
+        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+        category: "international"
+      }
+
+    ];
+
+    // DUPLICATE PRODUCTS MANY TIMES
+    let manyProducts = [];
+
+    for (let i = 0; i < 15; i++) {
+
+      manyProducts = manyProducts.concat(products);
+
+    }
+
+    products = manyProducts;
+
+    localStorage.setItem(
+      "products",
+      JSON.stringify(products)
+    );
+
+  }
 
   displayProducts(products);
 
 }
-
 /* =========================
    DISPLAY PRODUCTS
 ========================= */
