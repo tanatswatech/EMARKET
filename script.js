@@ -294,22 +294,36 @@ function addReel() {
 }
 
 function loadReels() {
-  const reelList = getEl("reelList");
+
+  const reelList = document.getElementById("reelList");
   if (!reelList) return;
 
-  const reels = JSON.parse(localStorage.getItem("reels")) || [];
+  const reels = [
+    "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+    "https://www.youtube.com/embed/kJQP7kiw5Fk",
+    "https://www.youtube.com/embed/OPf0YbXqDm0",
+    "https://www.youtube.com/embed/L_jWHffIx5E"
+  ];
+
   reelList.innerHTML = "";
 
   reels.forEach(url => {
-    const id = extractYouTubeID(url);
-    if (!id) return;
 
     const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${id}`;
+
+    iframe.src =
+      `${url}?autoplay=1&mute=1&loop=1&controls=0&playlist=${url.split("/").pop()}`;
+
+    iframe.allow =
+      "autoplay; encrypted-media";
+
+    iframe.loading = "lazy";
+    iframe.className = "reel-item";
+
     reelList.appendChild(iframe);
   });
 }
-
 function extractYouTubeID(url) {
   try {
     const u = new URL(url);
