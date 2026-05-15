@@ -339,9 +339,6 @@ function addProduct() {
 /* =========================
    LOAD PRODUCTS
 ========================= */
-/* =========================
-   LOAD PRODUCTS
-========================= */
 function loadProducts() {
 
   let products =
