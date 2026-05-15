@@ -213,11 +213,17 @@
     International
   </button>
 
-  <button class="market-btn"
-    onclick="openReels()">
-     Reels
-  </button>
+  <button class="market-btn" onclick="openReels()">
+  🎬 Reels
+</button>
+     <div id="reelsOverlay" class="reels-overlay">
+  <div class="reels-header">
+    <h2>🔥 Marketing Reels</h2>
+    <button onclick="closeReels()">✖</button>
+  </div>
 
+  <div class="reels-feed" id="reelsFeed"></div>
+</div>
 </div>
 
     <!-- CATEGORIES -->
