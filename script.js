@@ -711,4 +711,116 @@ window.pay = pay;
 window.goDelivery = goDelivery;
 
 window.confirmDelivery = confirmDelivery;
+/* =========================
+   SECRET ADMIN ACCESS
+========================= */
 
+let tapCount = 0;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const logo =
+    document.querySelector(".logo");
+
+  if (!logo) return;
+
+  logo.addEventListener("dblclick", () => {
+
+    window.location.href = "admin.html";
+
+  });
+
+});
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+function adminLogin() {
+
+  const username =
+    document.getElementById("adminUser").value;
+
+  const password =
+    document.getElementById("adminPass").value;
+
+  if (
+    username === "admin1" &&
+    password === "@dmin001"
+  ) {
+
+    document.getElementById(
+      "adminLogin"
+    ).style.display = "none";
+
+    document.getElementById(
+      "adminDashboard"
+    ).style.display = "flex";
+
+    loadAdminDashboard();
+
+  } else {
+
+    alert("Invalid admin details");
+
+  }
+
+}
+
+/* =========================
+   LOAD ADMIN DASHBOARD
+========================= */
+function loadAdminDashboard() {
+
+  const products =
+    JSON.parse(localStorage.getItem("products")) || [];
+
+  const user =
+    JSON.parse(localStorage.getItem("user"));
+
+  document.getElementById(
+    "adminProducts"
+  ).innerText = products.length;
+
+  document.getElementById(
+    "adminUsers"
+  ).innerText = user ? 1 : 0;
+
+  const container =
+    document.getElementById("adminProductList");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  products.forEach(product => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "admin-product-card";
+
+    div.innerHTML = `
+
+      <img src="${product.image}">
+
+      <div>
+
+        <h3>${product.name}</h3>
+
+        <p>$${product.price}</p>
+
+        <p>⭐ 4.8 Rating</p>
+
+        <p>Seller: EMARKET Seller</p>
+
+      </div>
+
+    `;
+
+    container.appendChild(div);
+
+  });
+
+}
+
+window.adminLogin = adminLogin;
