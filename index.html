@@ -23,6 +23,10 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <!-- CSS -->
   <link rel="stylesheet"
     href="style.css">
@@ -39,8 +43,12 @@
 
   <div class="logo-area">
 
-    <h2 class="logo">
+    <h2
+      class="logo"
+      ondblclick="window.location.href='admin-login.html'">
+
       E-MARKET
+
     </h2>
 
     <span class="logo-badge">
@@ -50,6 +58,8 @@
   </div>
 
   <div class="search-box">
+
+    <i class="fa fa-search"></i>
 
     <input
       type="text"
@@ -87,20 +97,41 @@
 
   <div class="hero-overlay">
 
+    <div class="hero-badge">
+      🔥 Africa's Smart Marketplace
+    </div>
+
     <h1>
-      Welcome To EMARKET
+
+      Buy & Sell Smarter
+      With EMARKET
+
     </h1>
 
     <p>
-      Shop Local & International Products
-      With Fast Delivery 🚚
+
+      Explore trending gadgets, fashion,
+      vehicles, beauty products and more
+      from local & international sellers.
+
     </p>
 
-    <button onclick="window.scrollTo(0,700)">
+    <div class="hero-buttons">
 
-      Start Shopping
+      <button
+        onclick="window.scrollTo(0,900)">
 
-    </button>
+        Start Shopping
+
+      </button>
+
+      <button class="hero-outline">
+
+        Watch Reels
+
+      </button>
+
+    </div>
 
   </div>
 
@@ -140,7 +171,7 @@
       style="background-image:url('https://images.unsplash.com/photo-1585386959984-a4155224a1ad');">
     </div>
 
-    <!-- DUPLICATE FOR SMOOTH LOOP -->
+    <!-- DUPLICATES -->
 
     <div class="hero-item"
       style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9');">
@@ -159,95 +190,178 @@
     </div>
 
   </div>
-<!-- END HERO -->
 
-<section class="reels">
-
-  <h2 class="reels-title">
-    🔥 Trending Reels
-  </h2>
-
-  <div class="reels-container" id="reelList"></div>
-
-</section>
-  
 </section>
 
 <!-- =========================
-     MARKET TOGGLE
+     MARKET AREA
 ========================= -->
 
-<div class="market-toggle">
+<section class="market-section">
 
-  <button
-    class="market-btn active-market"
-    onclick="switchMarket('national')">
+  <!-- LEFT REELS -->
 
-    🇿🇼 National
+  <aside class="reels-side">
 
-  </button>
+    <div class="side-title">
 
-  <button
-    class="market-btn"
-    onclick="switchMarket('international')">
+      <i class="fa-solid fa-fire"></i>
 
-    🌐 International
+      Trending Reels
 
-  </button>
+    </div>
 
-</div>
-<!-- =========================
-     CATEGORIES
-========================= -->
+    <div
+      class="reels-container"
+      id="reelList">
 
-<section class="categories">
+    </div>
 
-  <button onclick="filterProducts('all')">
-    All
-  </button>
+  </aside>
 
-  <button onclick="filterProducts('fashion')">
-    Fashion & Apparel
-  </button>
+  <!-- RIGHT PRODUCTS -->
 
-  <button onclick="filterProducts('beauty')">
-    Beauty & Personal Care
-  </button>
+  <main class="products-side">
 
-  <button onclick="filterProducts('electronics')">
-    Electronics & Gadgets
-  </button>
+    <!-- MARKET TOGGLE -->
 
-  <button onclick="filterProducts('furniture')">
-    Home & Furniture
-  </button>
+    <div class="market-toggle">
 
-  <button onclick="filterProducts('toys')">
-    Toys & Kids
-  </button>
+      <button
+        class="market-btn active-market"
+        onclick="switchMarket('national')">
 
-  <button onclick="filterProducts('gaming')">
-    Gaming
-  </button>
+        🇿🇼 National Market
 
-  <button onclick="filterProducts('phones')">
-    Phones
-  </button>
+      </button>
 
-  <button onclick="filterProducts('sports')">
-    Sports
-  </button>
+      <button
+        class="market-btn"
+        onclick="switchMarket('international')">
 
-  <button onclick="filterProducts('cars')">
-    Vehicles
-  </button>
+        🌍 International Market
 
-  <button onclick="filterProducts('luxury')">
-    Luxury
-  </button>
+      </button>
+
+    </div>
+
+    <!-- CATEGORIES -->
+
+    <section class="categories">
+
+      <button onclick="filterProducts('all')">
+        All
+      </button>
+
+      <button onclick="filterProducts('fashion')">
+        Fashion
+      </button>
+
+      <button onclick="filterProducts('beauty')">
+        Beauty
+      </button>
+
+      <button onclick="filterProducts('electronics')">
+        Electronics
+      </button>
+
+      <button onclick="filterProducts('phones')">
+        Phones
+      </button>
+
+      <button onclick="filterProducts('gaming')">
+        Gaming
+      </button>
+
+      <button onclick="filterProducts('sports')">
+        Sports
+      </button>
+
+      <button onclick="filterProducts('furniture')">
+        Furniture
+      </button>
+
+      <button onclick="filterProducts('cars')">
+        Vehicles
+      </button>
+
+      <button onclick="filterProducts('luxury')">
+        Luxury
+      </button>
+
+    </section>
+
+    <!-- PRODUCTS -->
+
+    <section class="products-section">
+
+      <div
+        class="product-grid"
+        id="productList">
+
+      </div>
+
+    </section>
+
+  </main>
 
 </section>
 
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features-section">
+
+  <div class="feature-card">
+
+    <i class="fa-solid fa-truck-fast"></i>
+
+    <h3>Fast Delivery</h3>
+
+    <p>
+      Nationwide & International shipping.
+    </p>
+
+  </div>
+
+  <div class="feature-card">
+
+    <i class="fa-solid fa-shield-halved"></i>
+
+    <h3>Secure Payments</h3>
+
+    <p>
+      EcoCash, Visa, Mastercard & more.
+    </p>
+
+  </div>
+
+  <div class="feature-card">
+
+    <i class="fa-solid fa-store"></i>
+
+    <h3>Verified Sellers</h3>
+
+    <p>
+      Trusted sellers with real ratings.
+    </p>
+
+  </div>
+
+  <div class="feature-card">
+
+    <i class="fa-solid fa-headset"></i>
+
+    <h3>24/7 Support</h3>
+
+    <p>
+      We help buyers & sellers anytime.
+    </p>
+
+  </div>
+
+</section>
 
 <!-- =========================
      FOOTER
@@ -262,7 +376,10 @@
       <h3>EMARKET</h3>
 
       <p>
-        The future of African digital commerce.
+
+        The future of African
+        digital commerce.
+
       </p>
 
     </div>
@@ -289,6 +406,16 @@
 
     </div>
 
+    <div>
+
+      <h4>Contact</h4>
+
+      <p>support@emarket.africa</p>
+
+      <p>+263 77 000 0000</p>
+
+    </div>
+
   </div>
 
 </footer>
@@ -303,7 +430,7 @@
      SCRIPT
 ========================= -->
 
-<script src="script.js?v=10"></script>
+<script src="script.js?v=20"></script>
 
 </body>
 </html>
