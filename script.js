@@ -982,3 +982,44 @@ function loadAdminDashboard() {
 }
 
 window.adminLogin = adminLogin;
+
+
+
+/* =========================
+   MARKET SWITCH
+========================= */
+
+function showMarket(type, button) {
+
+  const local =
+    document.getElementById("localMarket");
+
+  const international =
+    document.getElementById("internationalMarket");
+
+  const buttons =
+    document.querySelectorAll(".market-btn");
+
+  buttons.forEach(btn => {
+    btn.classList.remove("active-market");
+  });
+
+  button.classList.add("active-market");
+
+  if (type === "local") {
+
+    local.style.display = "block";
+
+    international.style.display = "none";
+
+  } else {
+
+    local.style.display = "none";
+
+    international.style.display = "block";
+
+  }
+
+}
+
+window.showMarket = showMarket;
