@@ -431,78 +431,40 @@ body::after {
 
 }
 
-/* =========================
-   REELS SECTION
-========================= */
-
-.reels {
-
-  padding: 25px;
-
-}
-
-.reels-title {
-
-  text-align: center;
-
-  font-size: 28px;
-
-  margin-bottom: 25px;
-
-  text-shadow:
-    0 0 20px rgba(255,102,0,0.4);
-
-}
-
-.reels-container {
-
+.market-section {
   display: flex;
-
   gap: 20px;
-
-  overflow-x: auto;
-
-  padding-bottom: 10px;
-
-  scroll-snap-type: x mandatory;
-
+  align-items: flex-start;
 }
 
-.reels-container::-webkit-scrollbar {
-
-  height: 6px;
-
-}
-
-.reels-container::-webkit-scrollbar-thumb {
-
-  background: var(--primary);
-
-  border-radius: 20px;
-
-}
-
-.reels-container iframe {
-
-  min-width: 320px;
-
+/* LEFT REELS COLUMN */
+.reels-side {
   width: 320px;
-
-  height: 570px;
-
-  border: none;
-
-  border-radius: 20px;
-
-  scroll-snap-align: start;
-
-  background: black;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.4);
-
+  position: sticky;
+  top: 90px;
 }
 
+/* RIGHT PRODUCTS */
+.products-side {
+  flex: 1;
+}
+
+/* REELS STYLE LIKE MODERN ADS */
+.reel-item {
+  width: 100%;
+  height: 220px;
+  border-radius: 18px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* MAKE IT LOOK LIKE "TIKTOK ADS FEED STYLE" */
+.reels-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 /* =========================
    MARKET TOGGLE
 ========================= */
