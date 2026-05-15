@@ -5,97 +5,442 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport"
+  <meta
+    name="viewport"
     content="width=device-width, initial-scale=1.0">
 
-  <title>EMARKET Admin</title>
+  <title>EMARKET ADMIN</title>
 
-  <link rel="stylesheet" href="style.css">
+  <!-- FONT -->
+  <link rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet"
+    href="style.css">
 
 </head>
 
 <body>
 
-  <div class="admin-login" id="adminLogin">
+<!-- =========================
+     ADMIN DASHBOARD
+========================= -->
 
-    <div class="glass-card">
+<div class="admin-dashboard">
 
-      <h1>🔐 Admin Access</h1>
+  <!-- SIDEBAR -->
 
-      <input
-        type="text"
-        id="adminUser"
-        placeholder="Username">
+  <aside class="sidebar">
 
-      <input
-        type="password"
-        id="adminPass"
-        placeholder="Password">
+    <div class="admin-logo">
 
-      <button onclick="adminLogin()">
+      <h2>EMARKET</h2>
 
-        Enter Dashboard
-
-      </button>
+      <p>ADMIN PANEL</p>
 
     </div>
 
-  </div>
+    <ul>
 
-  <div
-    class="admin-dashboard"
-    id="adminDashboard"
-    style="display:none;">
+      <li onclick="showAdminSection('dashboardSection')">
+        📊 Dashboard
+      </li>
 
-    <aside class="sidebar">
+      <li onclick="showAdminSection('productsSection')">
+        🛒 Products
+      </li>
 
-      <h2>🛒 EMARKET</h2>
+      <li onclick="showAdminSection('usersSection')">
+        👥 Users
+      </li>
 
-      <ul>
+      <li onclick="showAdminSection('sellersSection')">
+        🏪 Sellers
+      </li>
 
-        <li>📊 Dashboard</li>
-        <li>🛍 Products</li>
-        <li>👥 Users</li>
-        <li>💰 Sales</li>
-        <li>⭐ Ratings</li>
+      <li onclick="showAdminSection('ordersSection')">
+        📦 Orders
+      </li>
 
-      </ul>
+      <li onclick="showAdminSection('auditSection')">
+        🔐 Audits
+      </li>
 
-    </aside>
+      <li onclick="logoutAdmin()">
+        🚪 Logout
+      </li>
 
-    <main class="admin-main">
+    </ul>
 
-      <h1>Admin Dashboard</h1>
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="admin-main">
+
+    <!-- =====================
+         DASHBOARD SECTION
+    ====================== -->
+
+    <section id="dashboardSection">
+
+      <h1 class="admin-title">
+        Dashboard Overview
+      </h1>
 
       <div class="admin-stats">
 
         <div class="stat-card">
-          <h3 id="adminProducts">0</h3>
-          <p>Products</p>
+
+          <h2 id="adminProducts">
+            0
+          </h2>
+
+          <p>Total Products</p>
+
         </div>
 
         <div class="stat-card">
-          <h3 id="adminUsers">0</h3>
-          <p>Users</p>
+
+          <h2 id="adminUsers">
+            0
+          </h2>
+
+          <p>App Users</p>
+
         </div>
 
         <div class="stat-card">
-          <h3>$12,500</h3>
-          <p>Sales</p>
+
+          <h2 id="adminSellers">
+            0
+          </h2>
+
+          <p>Sellers</p>
+
+        </div>
+
+        <div class="stat-card">
+
+          <h2>
+            $25,490
+          </h2>
+
+          <p>Total Sales</p>
+
         </div>
 
       </div>
 
-      <div id="adminProductList"
-        class="admin-products">
+    </section>
+
+    <!-- =====================
+         PRODUCTS SECTION
+    ====================== -->
+
+    <section
+      id="productsSection"
+      style="display:none;">
+
+      <h1 class="admin-title">
+        Products
+      </h1>
+
+      <div
+        class="admin-products"
+        id="adminProductsGrid">
 
       </div>
 
-    </main>
+    </section>
 
-  </div>
+    <!-- =====================
+         USERS SECTION
+    ====================== -->
 
-  <script src="script.js"></script>
+    <section
+      id="usersSection"
+      style="display:none;">
+
+      <h1 class="admin-title">
+        Users
+      </h1>
+
+      <div class="admin-table">
+
+        <div class="table-row header">
+
+          <span>Name</span>
+          <span>Email</span>
+          <span>Status</span>
+
+        </div>
+
+        <div class="table-row">
+
+          <span>Tanatswa</span>
+          <span>tanatswa@gmail.com</span>
+          <span class="green">
+            Active
+          </span>
+
+        </div>
+
+        <div class="table-row">
+
+          <span>John Doe</span>
+          <span>john@gmail.com</span>
+          <span class="green">
+            Active
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================
+         SELLERS SECTION
+    ====================== -->
+
+    <section
+      id="sellersSection"
+      style="display:none;">
+
+      <h1 class="admin-title">
+        Sellers
+      </h1>
+
+      <div class="admin-table">
+
+        <div class="table-row header">
+
+          <span>Seller</span>
+          <span>Shop</span>
+          <span>Status</span>
+
+        </div>
+
+        <div class="table-row">
+
+          <span>Mike</span>
+          <span>Tech World</span>
+          <span class="green">
+            Verified
+          </span>
+
+        </div>
+
+        <div class="table-row">
+
+          <span>Sarah</span>
+          <span>Beauty Store</span>
+          <span class="green">
+            Verified
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================
+         ORDERS SECTION
+    ====================== -->
+
+    <section
+      id="ordersSection"
+      style="display:none;">
+
+      <h1 class="admin-title">
+        Orders
+      </h1>
+
+      <div class="admin-table">
+
+        <div class="table-row header">
+
+          <span>Order ID</span>
+          <span>Buyer</span>
+          <span>Status</span>
+
+        </div>
+
+        <div class="table-row">
+
+          <span>#EM102</span>
+          <span>Tanatswa</span>
+          <span class="orange">
+            Shipping
+          </span>
+
+        </div>
+
+        <div class="table-row">
+
+          <span>#EM103</span>
+          <span>John</span>
+          <span class="green">
+            Delivered
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =====================
+         AUDIT SECTION
+    ====================== -->
+
+    <section
+      id="auditSection"
+      style="display:none;">
+
+      <h1 class="admin-title">
+        Security Audits
+      </h1>
+
+      <div class="audit-box">
+
+        <p>
+          ✅ Payment systems operational
+        </p>
+
+        <p>
+          ✅ Server security active
+        </p>
+
+        <p>
+          ✅ Fraud detection enabled
+        </p>
+
+        <p>
+          ⚠️ 2 suspicious login attempts blocked
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- =========================
+     SCRIPT
+========================= -->
+
+<script>
+
+/* =========================
+   ADMIN STATS
+========================= */
+
+const products =
+  JSON.parse(localStorage.getItem("products")) || [];
+
+const seller =
+  JSON.parse(localStorage.getItem("seller"));
+
+const user =
+  JSON.parse(localStorage.getItem("user"));
+
+document.getElementById("adminProducts")
+.innerText = products.length;
+
+document.getElementById("adminUsers")
+.innerText = user ? 1 : 0;
+
+document.getElementById("adminSellers")
+.innerText = seller ? 1 : 0;
+
+/* =========================
+   SHOW SECTION
+========================= */
+
+function showAdminSection(id) {
+
+  const sections =
+    document.querySelectorAll("main section");
+
+  sections.forEach(section => {
+
+    section.style.display = "none";
+
+  });
+
+  document.getElementById(id)
+    .style.display = "block";
+
+}
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+function loadAdminProducts() {
+
+  const container =
+    document.getElementById("adminProductsGrid");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  products.forEach(product => {
+
+    container.innerHTML += `
+
+      <div class="admin-product-card">
+
+        <img src="${product.image}">
+
+        <div>
+
+          <h3>${product.name}</h3>
+
+          <p>$${product.price}</p>
+
+          <p>⭐ 4.8</p>
+
+          <p>Seller: EMARKET Seller</p>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+loadAdminProducts();
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutAdmin() {
+
+  window.location.href = "index.html";
+
+}
+
+</script>
 
 </body>
 </html>
