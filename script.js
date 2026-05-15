@@ -388,3 +388,34 @@ function openReels() {
 function closeReels() {
   document.getElementById("reelsOverlay").style.display = "none";
 }
+function loadReelsFeed() {
+
+  const container =
+    document.getElementById("reelsFeed");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const reels = [
+    "https://www.w3schools.com/html/mov_bbb.mp4",
+    "https://www.w3schools.com/html/movie.mp4",
+    "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+  ];
+
+  reels.forEach(src => {
+
+    const video = document.createElement("video");
+
+    video.src = src;
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.controls = false;
+    video.playsInline = true;
+
+    container.appendChild(video);
+
+  });
+
+}
