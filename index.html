@@ -194,27 +194,6 @@
      MARKET AREA
 ========================= -->
 
-<section class="market-layout">
-
-  <!-- REELS SIDE -->
-
-  <aside class="reels-side">
-
-    <div class="side-title">
-
-      <i class="fa-solid fa-fire"></i>
-
-      Trending Reels
-
-    </div>
-
-    <div
-      class="reels-container"
-      id="reelList">
-
-    </div>
-
-  </aside>
 
   <!-- PRODUCTS SIDE -->
 
@@ -222,25 +201,24 @@
 
     <!-- MARKET TOGGLE -->
 
-    <div class="market-toggle">
+   <div class="market-toggle">
 
-      <button
-        class="market-btn active-market"
-        onclick="switchMarket('national')">
+  <button class="market-btn active-market"
+    onclick="switchMarket('national')">
+    🇿🇼 National
+  </button>
 
-        🇿🇼 National Market
+  <button class="market-btn"
+    onclick="switchMarket('international')">
+    🌍 International
+  </button>
 
-      </button>
+  <button class="market-btn"
+    onclick="openReels()">
+    🎬 Reels
+  </button>
 
-      <button
-        class="market-btn"
-        onclick="switchMarket('international')">
-
-        🌍 International Market
-
-      </button>
-
-    </div>
+</div>
 
     <!-- CATEGORIES -->
 
@@ -372,6 +350,18 @@
 <!-- SCRIPT -->
 
 <script src="script.js?v=30"></script>
+<div id="reelsOverlay" class="reels-overlay">
 
+  <div class="reels-header">
+
+    <h2>🔥 Marketing Reels</h2>
+
+    <button onclick="closeReels()">✖</button>
+
+  </div>
+
+  <div class="reels-feed" id="reelsFeed"></div>
+
+</div>
 </body>
 </html>
