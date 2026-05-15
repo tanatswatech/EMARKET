@@ -329,3 +329,40 @@ document.addEventListener("DOMContentLoaded", () => {
   showUser();
   loadReels();
 });
+/* =========================
+   SECRET ADMIN PORTAL (FIXED)
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const logo =
+    document.querySelector(".logo-area") ||
+    document.querySelector(".logo") ||
+    document.querySelector("h2");
+
+  if (!logo) {
+    console.warn("Logo not found for admin trigger");
+    return;
+  }
+
+  let taps = 0;
+  let timer = null;
+
+  // safer than dblclick (works on mobile + desktop)
+  logo.addEventListener("click", () => {
+
+    taps++;
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      taps = 0;
+    }, 800);
+
+    if (taps === 3) {
+      console.log("ADMIN PORTAL TRIGGERED 🔐");
+      window.location.href = "admin.html";
+    }
+  });
+
+});
