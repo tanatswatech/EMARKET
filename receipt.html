@@ -1,23 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-<title>Receipt</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMARKET Receipt</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0b0b0b;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* RECEIPT CARD */
+.receipt {
+  width: 700px;
+  background: #111;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff6600;
+}
+
+.meta {
+  text-align: right;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* CUSTOMER */
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+}
+
+th {
+  color: #ff9900;
+  font-weight: 600;
+}
+
+/* TOTAL */
+.total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff9900;
+}
+
+/* BUTTON */
+button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ff6600, #ff9900);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="receipt-card fade-in">
-  <h2>Receipt</h2>
+<div class="receipt">
 
-  <p>Product: Bike</p>
-  <p>Price: $120</p>
-  <p>Status: Paid ✅</p>
+  <div class="header">
 
-  <button onclick="goDelivery()">Deliver</button>
+    <div class="logo">EMARKET</div>
+
+    <div class="meta">
+      Receipt No: <span id="receiptNo"></span><br>
+      Date: <span id="date"></span>
+    </div>
+
+  </div>
+
+  <div class="info">
+
+    <div>
+      <strong>Customer</strong><br>
+      <span id="customer">Guest User</span>
+    </div>
+
+    <div>
+      <strong>Payment Method</strong><br>
+      Card / EcoCash
+    </div>
+
+  </div>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+
+    <tbody id="items"></tbody>
+
+  </table>
+
+  <div class="total">
+    Total: $<span id="total">0</span>
+  </div>
+
+  <button onclick="window.print()">Print Receipt</button>
+
 </div>
 
-<script src="script.js"></script>
+<script>
+
+function loadReceipt() {
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const items = document.getElementById("items");
+
+  let total = 0;
+
+  cart.forEach(name => {
+
+    const price = Math.floor(Math.random() * 500 + 20);
+
+    total += price;
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${name}</td>
+      <td>1</td>
+      <td>$${price}</td>
+    `;
+
+    items.appendChild(row);
+
+  });
+
+  document.getElementById("total").innerText = total;
+
+  document.getElementById("receiptNo").innerText =
+    "EM-" + Math.floor(Math.random() * 999999);
+
+  document.getElementById("date").innerText =
+    new Date().toLocaleDateString();
+
+}
+
+loadReceipt();
+
+</script>
+
 </body>
 </html>
