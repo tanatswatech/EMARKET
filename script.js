@@ -380,20 +380,38 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-function openReels() {
-  document.getElementById("reelsOverlay").style.display = "flex";
-  loadReelsFeed();
-}
+window.openReels = function () {
+  const overlay = document.getElementById("reelsOverlay");
+
+  if (!overlay) {
+    alert("Reels section not found in HTML");
+    return;
+  }
+
+  overlay.style.display = "flex";
+
+  window.loadReelsFeed();
+};
+
+window.closeReels = function () {
+  const overlay = document.getElementById("reelsOverlay");
+
+  if (overlay) {
+    overlay.style.display = "none";
+  }
+};
 
 function closeReels() {
   document.getElementById("reelsOverlay").style.display = "none";
 }
-function loadReelsFeed() {
+window.loadReelsFeed = function () {
 
-  const container =
-    document.getElementById("reelsFeed");
+  const container = document.getElementById("reelsFeed");
 
-  if (!container) return;
+  if (!container) {
+    console.log("No reels container found");
+    return;
+  }
 
   container.innerHTML = "";
 
@@ -418,4 +436,4 @@ function loadReelsFeed() {
 
   });
 
-}
+};
