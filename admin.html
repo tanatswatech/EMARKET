@@ -939,6 +939,66 @@ Logout
 }
 
 }
+   /* =========================
+   ADMIN SETTINGS FUNCTIONS
+========================= */
+
+function logoutAdmin() {
+
+alert("Admin logged out ✅");
+
+window.location.href = "index.html";
+
+}
+
+function addNewAdmin() {
+
+const username =
+prompt("Enter new admin username");
+
+if(!username) return;
+
+const password =
+prompt("Enter new admin password");
+
+if(!password) return;
+
+const admin = {
+username,
+password
+};
+
+localStorage.setItem(
+"extraAdmin",
+JSON.stringify(admin)
+);
+
+alert(
+"New admin added successfully ✅"
+);
+
+}
+
+function changeAdminPassword() {
+
+const newPass =
+prompt("Enter new password");
+
+if(!newPass) return;
+
+alert(
+"Password updated successfully ✅"
+);
+
+}
+
+function manageSellers() {
+
+alert(
+"Seller management panel coming soon 🚀"
+);
+
+}
 </script>
 
 </body>
