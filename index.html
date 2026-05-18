@@ -369,28 +369,32 @@
   <div class="reels-feed" id="reelsFeed"></div>
 
 </div>
-  <!-- CHATBOT BUTTON -->
+ <!-- CHATBOT BUTTON -->
 
-<div class="chatbot-toggle" onclick="toggleChat()">
-  💬
+<div class="chatbot-toggle" onclick="toggleChatbot()">
+
+ <img
+    src="ai-brain.png"
+    alt="AI Brain">
+
 </div>
 
-<!-- CHAT WINDOW -->
+<!-- CHATBOT -->
 
 <div class="chatbot-box" id="chatbotBox">
 
   <div class="chat-header">
 
-    <h3>EMARKET Assistant</h3>
+    <h3>EMARKET AI</h3>
 
-    <span onclick="toggleChat()">✖</span>
+    <span onclick="toggleChatbot()">✖</span>
 
   </div>
 
   <div class="chat-messages" id="chatMessages">
 
     <div class="bot-message">
-      👋 Hello! Ask me about products, payments, delivery or sellers.
+      Hello 👋 Ask me anything about EMARKET.
     </div>
 
   </div>
@@ -400,9 +404,7 @@
     <input
       type="text"
       id="chatInput"
-      placeholder="Ask something..."
-      onkeypress="handleChat(event)"
-    >
+      placeholder="Ask something...">
 
     <button onclick="sendMessage()">
       Send
@@ -411,10 +413,6 @@
   </div>
 
 </div>
-  <!-- =========================
-     AI CHAT BUTTON
-========================= -->
-
 <!-- =========================
      AI CHAT BUTTON
 ========================= -->
