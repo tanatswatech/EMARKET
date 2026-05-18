@@ -666,7 +666,254 @@ Active
 `;
 
 });
+/* =========================
+   ADMIN MENU SYSTEM
+========================= */
 
+function showSection(section) {
+
+const main =
+document.getElementById("mainContent");
+
+if(section === "dashboard") {
+
+location.reload();
+
+}
+
+else if(section === "products") {
+
+main.innerHTML = `
+
+<h1 style="margin-bottom:25px;">
+📦 Products Management
+</h1>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Product</th>
+<th>Price</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productsTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+const table =
+document.getElementById("productsTable");
+
+const products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+products.forEach(product=>{
+
+table.innerHTML += `
+
+<tr>
+
+<td>
+
+<div class="product">
+
+<img src="${product.image}">
+
+${product.name}
+
+</div>
+
+</td>
+
+<td>$${product.price}</td>
+
+<td style="color:lime;">
+Active
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+else if(section === "customers") {
+
+main.innerHTML = `
+
+<h1 style="margin-bottom:25px;">
+👥 Customers
+</h1>
+
+<div class="stats">
+
+<div class="card">
+
+<i class="fa-solid fa-users"></i>
+
+<h2>12,420</h2>
+
+<p>Registered Users</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-user-check"></i>
+
+<h2>8,940</h2>
+
+<p>Active Buyers</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+else if(section === "orders") {
+
+main.innerHTML = `
+
+<h1 style="margin-bottom:25px;">
+🛒 Orders
+</h1>
+
+<div class="table-box">
+
+<table>
+
+<tr>
+
+<th>Order ID</th>
+<th>Status</th>
+<th>Amount</th>
+
+</tr>
+
+<tr>
+
+<td>#EM1022</td>
+<td style="color:orange;">Pending</td>
+<td>$240</td>
+
+</tr>
+
+<tr>
+
+<td>#EM1023</td>
+<td style="color:lime;">Completed</td>
+<td>$790</td>
+
+</tr>
+
+<tr>
+
+<td>#EM1024</td>
+<td style="color:red;">Cancelled</td>
+<td>$110</td>
+
+</tr>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+else if(section === "payments") {
+
+main.innerHTML = `
+
+<h1 style="margin-bottom:25px;">
+💳 Payments
+</h1>
+
+<div class="stats">
+
+<div class="card">
+
+<i class="fa-solid fa-dollar-sign"></i>
+
+<h2>$48,920</h2>
+
+<p>Total Revenue</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-wallet"></i>
+
+<h2>$8,400</h2>
+
+<p>Pending Payments</p>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+else if(section === "settings") {
+
+main.innerHTML = `
+
+<h1 style="margin-bottom:25px;">
+⚙ Settings
+</h1>
+
+<div class="table-box">
+
+<p style="margin-bottom:20px;">
+Admin Controls
+</p>
+
+<button>
+Change Password
+</button>
+
+<br><br>
+
+<button>
+Manage Sellers
+</button>
+
+<br><br>
+
+<button>
+Platform Settings
+</button>
+
+</div>
+
+`;
+
+}
+
+}
 </script>
 
 </body>
