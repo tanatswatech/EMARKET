@@ -644,3 +644,144 @@ document.addEventListener(
 
   }
 );
+/* =========================
+   CHATBOT TOGGLE
+========================= */
+
+function toggleChatbot() {
+
+  const box =
+    document.getElementById("chatbotBox");
+
+  if (!box) return;
+
+  if (
+    box.style.display === "flex"
+  ) {
+
+    box.style.display = "none";
+
+  } else {
+
+    box.style.display = "flex";
+
+  }
+
+}
+
+/* =========================
+   CHATBOT SEND MESSAGE
+========================= */
+
+function sendMessage() {
+
+  const input =
+    document.getElementById("chatInput");
+
+  const messages =
+    document.getElementById("chatMessages");
+
+  if (!input || !messages) return;
+
+  const text =
+    input.value.trim();
+
+  if (text === "") return;
+
+  /* USER MESSAGE */
+
+  const userDiv =
+    document.createElement("div");
+
+  userDiv.className =
+    "user-message";
+
+  userDiv.innerText = text;
+
+  messages.appendChild(userDiv);
+
+  /* BOT REPLY */
+
+  const botDiv =
+    document.createElement("div");
+
+  botDiv.className =
+    "bot-message";
+
+  let reply =
+    "I can help with products, payments, delivery, sellers and shopping.";
+
+  const lower =
+    text.toLowerCase();
+
+  if (
+    lower.includes("hello") ||
+    lower.includes("hi")
+  ) {
+
+    reply =
+      "Hello 👋 Welcome to EMARKET.";
+
+  }
+
+  else if (
+    lower.includes("payment")
+  ) {
+
+    reply =
+      "We support EcoCash, Visa, Mastercard and Innbucks.";
+
+  }
+
+  else if (
+    lower.includes("delivery")
+  ) {
+
+    reply =
+      "We offer Zimbabwe and international delivery 🚚";
+
+  }
+
+  else if (
+    lower.includes("seller")
+  ) {
+
+    reply =
+      "You can become a seller using the Become Seller button.";
+
+  }
+
+  else if (
+    lower.includes("products")
+  ) {
+
+    reply =
+      "We have electronics, fashion, gaming, beauty, cars and more.";
+
+  }
+
+  setTimeout(() => {
+
+    botDiv.innerText = reply;
+
+    messages.appendChild(botDiv);
+
+    messages.scrollTop =
+      messages.scrollHeight;
+
+  }, 500);
+
+  input.value = "";
+
+  messages.scrollTop =
+    messages.scrollHeight;
+
+}
+
+/* EXPORTS */
+
+window.toggleChatbot =
+  toggleChatbot;
+
+window.sendMessage =
+  sendMessage;
