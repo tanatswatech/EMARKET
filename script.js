@@ -437,3 +437,169 @@ window.loadReelsFeed = function () {
   });
 
 };
+/* =========================
+   CHATBOT
+========================= */
+
+function toggleChat() {
+
+  const box =
+    document.getElementById("chatbotBox");
+
+  if (!box) return;
+
+  if (
+    box.style.display === "flex"
+  ) {
+
+    box.style.display = "none";
+
+  } else {
+
+    box.style.display = "flex";
+
+  }
+
+}
+
+/* SEND MESSAGE */
+
+function sendMessage() {
+
+  const input =
+    document.getElementById("chatInput");
+
+  const messages =
+    document.getElementById("chatMessages");
+
+  if (!input || !messages) return;
+
+  const text =
+    input.value.trim();
+
+  if (!text) return;
+
+  /* USER MESSAGE */
+
+  const userDiv =
+    document.createElement("div");
+
+  userDiv.className =
+    "user-message";
+
+  userDiv.innerText = text;
+
+  messages.appendChild(userDiv);
+
+  /* BOT RESPONSE */
+
+  const botDiv =
+    document.createElement("div");
+
+  botDiv.className =
+    "bot-message";
+
+  const lower =
+    text.toLowerCase();
+
+  let reply =
+    "I can help with products, delivery, payments and sellers.";
+
+  /* SMART REPLIES */
+
+  if (
+    lower.includes("hello") ||
+    lower.includes("hi")
+  ) {
+
+    reply =
+      "👋 Welcome to EMARKET! How can I help you today?";
+
+  }
+
+  else if (
+    lower.includes("payment")
+  ) {
+
+    reply =
+      "💳 We support Visa, Mastercard, EcoCash and Innbucks.";
+
+  }
+
+  else if (
+    lower.includes("delivery")
+  ) {
+
+    reply =
+      "🚚 Delivery usually takes 1-3 days locally.";
+
+  }
+
+  else if (
+    lower.includes("seller")
+  ) {
+
+    reply =
+      "🏪 Sellers can register using the Become Seller button.";
+
+  }
+
+  else if (
+    lower.includes("products")
+  ) {
+
+    reply =
+      "🛍️ We offer electronics, fashion, gaming, vehicles and more.";
+
+  }
+
+  else if (
+    lower.includes("contact")
+  ) {
+
+    reply =
+      "📞 Contact support at support@emarket.africa";
+
+  }
+
+  else if (
+    lower.includes("refund")
+  ) {
+
+    reply =
+      "💵 Refunds are processed within 3-5 business days.";
+
+  }
+
+  setTimeout(() => {
+
+    botDiv.innerText = reply;
+
+    messages.appendChild(botDiv);
+
+    messages.scrollTop =
+      messages.scrollHeight;
+
+  }, 500);
+
+  input.value = "";
+
+}
+
+/* ENTER KEY */
+
+function handleChat(event) {
+
+  if (event.key === "Enter") {
+
+    sendMessage();
+
+  }
+
+}
+
+window.toggleChat = toggleChat;
+
+window.sendMessage = sendMessage;
+
+window.handleChat = handleChat;
