@@ -887,24 +887,49 @@ main.innerHTML = `
 
 <div class="table-box">
 
-<p style="margin-bottom:20px;">
+<h2 style="margin-bottom:20px;">
 Admin Controls
-</p>
+</h2>
 
-<button>
+<button onclick="addNewAdmin()">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Add Admin
+
+</button>
+
+<br><br>
+
+<button onclick="changeAdminPassword()">
+
+<i class="fa-solid fa-lock"></i>
+
 Change Password
+
 </button>
 
 <br><br>
 
-<button>
+<button onclick="manageSellers()">
+
+<i class="fa-solid fa-store"></i>
+
 Manage Sellers
+
 </button>
 
 <br><br>
 
-<button>
-Platform Settings
+<button onclick="logoutAdmin()"
+style="
+background:linear-gradient(to right,#ff0033,#ff3366);
+">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
 </button>
 
 </div>
