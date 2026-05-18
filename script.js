@@ -603,3 +603,44 @@ window.toggleChat = toggleChat;
 window.sendMessage = sendMessage;
 
 window.handleChat = handleChat;
+/* =========================
+   CHAT BUTTON OPEN
+========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+    const chatBtn =
+      document.getElementById("chatToggle");
+
+    if (chatBtn) {
+
+      chatBtn.addEventListener(
+        "click",
+        function () {
+
+          const chatbot =
+            document.getElementById("chatbotBox");
+
+          if (!chatbot) return;
+
+          if (
+            chatbot.style.display === "flex"
+          ) {
+
+            chatbot.style.display = "none";
+
+          } else {
+
+            chatbot.style.display = "flex";
+
+          }
+
+        }
+      );
+
+    }
+
+  }
+);
