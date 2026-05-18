@@ -1342,3 +1342,81 @@ button {
   border-radius: 0;
 
 }
+/* =========================
+   AI CHAT BUTTON
+========================= */
+
+#chatToggle {
+
+  position: fixed;
+
+  bottom: 25px;
+  right: 25px;
+
+  width: 75px;
+  height: 75px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  z-index: 99999;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff6600,
+      #ff9900
+    );
+
+  box-shadow:
+    0 0 25px rgba(255,102,0,0.6);
+
+  animation:
+    brainPulse 2s infinite;
+
+}
+
+#chatToggle img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+#chatToggle:hover {
+
+  transform: scale(1.08);
+
+}
+
+@keyframes brainPulse {
+
+  0% {
+
+    box-shadow:
+      0 0 15px rgba(255,102,0,0.4);
+
+  }
+
+  50% {
+
+    box-shadow:
+      0 0 35px rgba(255,102,0,0.9);
+
+  }
+
+  100% {
+
+    box-shadow:
+      0 0 15px rgba(255,102,0,0.4);
+
+  }
+
+}
