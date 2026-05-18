@@ -369,5 +369,47 @@
   <div class="reels-feed" id="reelsFeed"></div>
 
 </div>
+  <!-- CHATBOT BUTTON -->
+
+<div class="chatbot-toggle" onclick="toggleChat()">
+  💬
+</div>
+
+<!-- CHAT WINDOW -->
+
+<div class="chatbot-box" id="chatbotBox">
+
+  <div class="chat-header">
+
+    <h3>EMARKET Assistant</h3>
+
+    <span onclick="toggleChat()">✖</span>
+
+  </div>
+
+  <div class="chat-messages" id="chatMessages">
+
+    <div class="bot-message">
+      👋 Hello! Ask me about products, payments, delivery or sellers.
+    </div>
+
+  </div>
+
+  <div class="chat-input-area">
+
+    <input
+      type="text"
+      id="chatInput"
+      placeholder="Ask something..."
+      onkeypress="handleChat(event)"
+    >
+
+    <button onclick="sendMessage()">
+      Send
+    </button>
+
+  </div>
+
+</div>
 </body>
 </html>
