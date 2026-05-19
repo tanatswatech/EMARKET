@@ -277,7 +277,16 @@ function displayProducts(products) {
         <p>$${product.price}</p>
 
         <button onclick="addToCart('${product.name}')">Add To Cart</button>
-        <button onclick="buyProduct()">Buy Now</button>
+       <button
+class="cart-btn"
+onclick="buyProduct(
+'${product.name}',
+'${product.price}'
+)">
+
+Buy Now
+
+</button>
       </div>
     `;
 
