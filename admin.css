@@ -1,1 +1,136 @@
+/* =========================
+   ADMIN SCROLL FIX
+========================= */
 
+/* MAIN AREA */
+
+.main {
+
+height: 100vh;
+
+overflow-y: auto;
+
+padding-bottom: 120px;
+
+scroll-behavior: smooth;
+
+}
+
+/* PRODUCTS SECTION */
+
+.table-box {
+
+max-height: 75vh;
+
+overflow-y: auto;
+
+padding-right: 10px;
+
+}
+
+/* SCROLLBAR */
+
+.main::-webkit-scrollbar,
+.table-box::-webkit-scrollbar {
+
+width: 8px;
+
+}
+
+.main::-webkit-scrollbar-thumb,
+.table-box::-webkit-scrollbar-thumb {
+
+background: #ff6600;
+
+border-radius: 20px;
+
+}
+
+/* PRODUCT TABLE */
+
+table {
+
+width: 100%;
+
+border-collapse: collapse;
+
+}
+
+table th,
+table td {
+
+padding: 18px;
+
+text-align: left;
+
+border-bottom:
+1px solid rgba(255,255,255,0.08);
+
+}
+
+/* PRODUCT INSIDE TABLE */
+
+.product {
+
+display: flex;
+
+align-items: center;
+
+gap: 15px;
+
+}
+
+.product img {
+
+width: 60px;
+height: 60px;
+
+object-fit: cover;
+
+border-radius: 12px;
+
+}
+
+/* SETTINGS BUTTONS */
+
+.table-box button {
+
+width: 100%;
+
+justify-content: flex-start;
+
+padding: 16px 20px;
+
+font-size: 15px;
+
+}
+
+/* AUTOMATION OUTPUT */
+
+#automationOutput {
+
+max-height: 500px;
+
+overflow-y: auto;
+
+}
+
+/* MOBILE FIX */
+
+@media(max-width:900px){
+
+.main {
+
+padding: 20px;
+
+}
+
+.table-box {
+
+max-height: none;
+
+overflow: visible;
+
+}
+
+}
