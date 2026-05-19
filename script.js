@@ -785,3 +785,228 @@ window.toggleChatbot =
 
 window.sendMessage =
   sendMessage;
+/* =========================
+   EMARKET AI ASSISTANT
+========================= */
+
+function sendMessage() {
+
+const input =
+document.getElementById("chatInput");
+
+const messages =
+document.getElementById("chatMessages");
+
+if(!input || !messages) return;
+
+const text =
+input.value.trim();
+
+if(text === "") return;
+
+/* USER MESSAGE */
+
+messages.innerHTML += `
+
+<div class="user-message">
+
+${text}
+
+</div>
+
+`;
+
+/* AI RESPONSE */
+
+let reply = getAIResponse(
+text.toLowerCase()
+);
+
+setTimeout(()=>{
+
+messages.innerHTML += `
+
+<div class="bot-message">
+
+${reply}
+
+</div>
+
+`;
+
+messages.scrollTop =
+messages.scrollHeight;
+
+},600);
+
+input.value = "";
+
+messages.scrollTop =
+messages.scrollHeight;
+
+}
+
+/* =========================
+   SMART AI RESPONSES
+========================= */
+
+function getAIResponse(message) {
+
+/* GREETINGS */
+
+if(
+message.includes("hello") ||
+message.includes("hi")
+){
+
+return `
+👋 Hello! Welcome to EMARKET.
+How can I help you today?
+`;
+
+}
+
+/* PRODUCTS */
+
+if(
+message.includes("products") ||
+message.includes("buy")
+){
+
+return `
+🛍 EMARKET has electronics, fashion, beauty, vehicles, furniture, gaming products and more.
+
+Use the categories section to explore products.
+`;
+
+}
+
+/* DELIVERY */
+
+if(
+message.includes("delivery") ||
+message.includes("shipping")
+){
+
+return `
+🚚 EMARKET offers nationwide and international delivery services.
+
+Delivery times depend on your location and seller.
+`;
+
+}
+
+/* PAYMENT */
+
+if(
+message.includes("payment") ||
+message.includes("pay")
+){
+
+return `
+💳 We support EcoCash, Visa, Mastercard and other payment systems.
+`;
+
+}
+
+/* SELLER */
+
+if(
+message.includes("seller") ||
+message.includes("sell")
+){
+
+return `
+🏪 To become a seller, press the "Become Seller" button on the homepage and register your shop.
+`;
+
+}
+
+/* AI */
+
+if(
+message.includes("ai") ||
+message.includes("assistant")
+){
+
+return `
+🤖 I am the EMARKET AI Assistant.
+
+I can help with products, sellers, payments, orders, delivery and platform guidance.
+`;
+
+}
+
+/* REELS */
+
+if(
+message.includes("reels") ||
+message.includes("videos")
+){
+
+return `
+🎬 EMARKET reels help promote trending products and marketing campaigns in real time.
+`;
+
+}
+
+/* ADMIN */
+
+if(
+message.includes("admin")
+){
+
+return `
+🔐 Admin access is restricted to authorized EMARKET administrators only.
+`;
+
+}
+
+/* DEFAULT */
+
+return `
+🤖 I understand your question.
+
+EMARKET AI is continuously improving to assist with:
+• Shopping
+• Orders
+• Payments
+• Sellers
+• Marketing
+• Product discovery
+• Customer support
+
+Please ask another question 🚀
+`;
+
+}
+
+/* =========================
+   ENTER KEY SUPPORT
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+const input =
+document.getElementById("chatInput");
+
+if(input){
+
+input.addEventListener(
+"keypress",
+function(e){
+
+if(e.key === "Enter"){
+
+sendMessage();
+
+}
+
+}
+);
+
+}
+
+});
