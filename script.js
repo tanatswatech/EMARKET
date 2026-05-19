@@ -1117,3 +1117,166 @@ window.location.href =
 },2000);
 
 }
+/* =========================
+   ADVANCED REELS
+========================= */
+
+const marketingReels = [
+
+{
+video:
+"https://cdn.coverr.co/videos/coverr-young-woman-shopping-online-1564841113854?download=1080p",
+
+user:
+"TechWorld Store",
+
+caption:
+"New gadgets just arrived 🔥",
+
+profile:
+"https://i.pravatar.cc/100?img=12"
+},
+
+{
+video:
+"https://cdn.coverr.co/videos/coverr-clothes-shopping-1571577292472?download=1080p",
+
+user:
+"Fashion Hub",
+
+caption:
+"Trending fashion collection 👕",
+
+profile:
+"https://i.pravatar.cc/100?img=33"
+},
+
+{
+video:
+"https://cdn.coverr.co/videos/coverr-cosmetics-and-beauty-products-1562676707026?download=1080p",
+
+user:
+"Beauty Africa",
+
+caption:
+"Luxury beauty products ✨",
+
+profile:
+"https://i.pravatar.cc/100?img=45"
+},
+
+{
+video:
+"https://cdn.coverr.co/videos/coverr-man-using-smartphone-1562682987436?download=1080p",
+
+user:
+"Mobile Planet",
+
+caption:
+"Latest smartphone deals 📱",
+
+profile:
+"https://i.pravatar.cc/100?img=18"
+}
+
+];
+
+/* =========================
+   OPEN REELS
+========================= */
+
+function openReels(){
+
+const overlay =
+document.getElementById(
+"reelsOverlay"
+);
+
+const feed =
+document.getElementById(
+"reelsFeed"
+);
+
+feed.innerHTML = "";
+
+marketingReels.forEach(reel=>{
+
+feed.innerHTML += `
+
+<div class="full-reel">
+
+<video
+autoplay
+muted
+loop
+playsinline
+controls>
+
+<source
+src="${reel.video}"
+type="video/mp4">
+
+</video>
+
+<div class="reel-actions">
+
+<div>
+❤️
+<span>12K</span>
+</div>
+
+<div>
+💬
+<span>542</span>
+</div>
+
+<div>
+📤
+<span>Share</span>
+</div>
+
+</div>
+
+<div class="reel-bottom">
+
+<div class="reel-user">
+
+<img src="${reel.profile}">
+
+<div>
+
+<h3>
+${reel.user}
+</h3>
+
+<p>
+${reel.caption}
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+overlay.style.display = "flex";
+
+}
+
+/* =========================
+   CLOSE REELS
+========================= */
+
+function closeReels(){
+
+document.getElementById(
+"reelsOverlay"
+).style.display = "none";
+
+}
