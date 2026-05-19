@@ -471,6 +471,11 @@ Orders
 Payments
 </button>
 
+<button onclick="showSection('automation')">
+<i class="fa-solid fa-robot"></i>
+AI Automation
+</button>
+   
 <button onclick="showSection('settings')">
 <i class="fa-solid fa-gear"></i>
 Settings
@@ -937,7 +942,140 @@ Logout
 `;
 
 }
+else if(section === "automation") {
 
+main.innerHTML = `
+
+<h1 style="margin-bottom:25px;">
+🤖 Content & Campaign Automation
+</h1>
+
+<div class="stats">
+
+<div class="card">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<h2>Create Ads</h2>
+
+<p>
+Generate promotional banners and campaigns
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-video"></i>
+
+<h2>Create Reels</h2>
+
+<p>
+Launch viral EMARKET product reels
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-image"></i>
+
+<h2>Create Flyers</h2>
+
+<p>
+Design marketing flyers instantly
+</p>
+
+</div>
+
+</div>
+
+<div class="table-box" style="margin-top:25px;">
+
+<h2 style="margin-bottom:20px;">
+Generate Marketing Content
+</h2>
+
+<input
+type="text"
+id="campaignTitle"
+placeholder="Campaign Title"
+style="
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,0.08);
+color:white;
+">
+
+<textarea
+id="campaignDesc"
+placeholder="Describe the campaign..."
+style="
+width:100%;
+height:140px;
+padding:15px;
+border:none;
+border-radius:12px;
+background:rgba(255,255,255,0.08);
+color:white;
+margin-bottom:20px;
+resize:none;
+"></textarea>
+
+<div style="
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+">
+
+<button onclick="generateFlyer()">
+
+<i class="fa-solid fa-image"></i>
+
+Generate Flyer
+
+</button>
+
+<button onclick="generateReel()">
+
+<i class="fa-solid fa-video"></i>
+
+Generate Reel
+
+</button>
+
+<button onclick="generateAd()">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+Generate Ad
+
+</button>
+
+</div>
+
+<div
+id="automationOutput"
+style="
+margin-top:30px;
+padding:20px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+min-height:120px;
+">
+
+AI generated campaigns will appear here...
+
+</div>
+
+</div>
+
+`;
+
+}
 }
    /* =========================
    ADMIN SETTINGS FUNCTIONS
@@ -997,6 +1135,167 @@ function manageSellers() {
 alert(
 "Seller management panel coming soon 🚀"
 );
+
+}
+   /* =========================
+   AI AUTOMATION
+========================= */
+
+function generateFlyer() {
+
+const title =
+document.getElementById("campaignTitle").value;
+
+const desc =
+document.getElementById("campaignDesc").value;
+
+document.getElementById(
+"automationOutput"
+).innerHTML = `
+
+<h2 style="color:#ff9900;">
+📢 Flyer Campaign Created
+</h2>
+
+<br>
+
+<div style="
+background:linear-gradient(
+135deg,
+#ff6600,
+#ff9900
+);
+padding:30px;
+border-radius:20px;
+text-align:center;
+">
+
+<h1 style="font-size:42px;">
+${title}
+</h1>
+
+<p style="margin-top:15px;font-size:18px;">
+${desc}
+</p>
+
+<br>
+
+<button>
+Shop Now
+</button>
+
+</div>
+
+`;
+
+}
+
+function generateReel() {
+
+const title =
+document.getElementById("campaignTitle").value;
+
+document.getElementById(
+"automationOutput"
+).innerHTML = `
+
+<h2 style="color:#ff9900;">
+🎬 Reel Campaign Generated
+</h2>
+
+<br>
+
+<video
+controls
+autoplay
+muted
+loop
+style="
+width:100%;
+border-radius:20px;
+">
+
+<source
+src="https://cdn.coverr.co/videos/coverr-shopping-for-clothes-1567848422764?download=1080p"
+type="video/mp4">
+
+</video>
+
+<h3 style="margin-top:20px;">
+${title}
+</h3>
+
+<p>
+AI marketing reel ready for EMARKET promotions 🚀
+</p>
+
+`;
+
+}
+
+function generateAd() {
+
+const title =
+document.getElementById("campaignTitle").value;
+
+const desc =
+document.getElementById("campaignDesc").value;
+
+document.getElementById(
+"automationOutput"
+).innerHTML = `
+
+<h2 style="color:#ff9900;">
+🔥 Advertisement Generated
+</h2>
+
+<br>
+
+<div style="
+padding:30px;
+border-radius:20px;
+background:
+rgba(255,102,0,0.12);
+border:
+1px solid rgba(255,255,255,0.08);
+">
+
+<h1>
+${title}
+</h1>
+
+<p style="margin-top:15px;">
+${desc}
+</p>
+
+<br>
+
+<div style="
+display:flex;
+gap:10px;
+">
+
+<span style="
+background:#ff6600;
+padding:10px 16px;
+border-radius:30px;
+">
+#EMARKET
+</span>
+
+<span style="
+background:#ff9900;
+padding:10px 16px;
+border-radius:30px;
+">
+#ShopSmart
+</span>
+
+</div>
+
+</div>
+
+`;
 
 }
 </script>
