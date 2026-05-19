@@ -1,42 +1,883 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Seller Dashboard</title>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+EMARKET Seller Dashboard
+</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+margin:0;
+
+font-family:'Poppins',sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#050505,
+#101820,
+#181818
+);
+
+color:white;
+
+overflow:hidden;
+
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard{
+
+display:flex;
+
+height:100vh;
+
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+
+width:270px;
+
+background:
+rgba(0,0,0,0.45);
+
+backdrop-filter: blur(12px);
+
+border-right:
+1px solid rgba(255,255,255,0.08);
+
+padding:25px;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.logo{
+
+font-size:28px;
+
+font-weight:700;
+
+color:#ff6600;
+
+margin-bottom:40px;
+
+}
+
+.sidebar button{
+
+width:100%;
+
+padding:16px;
+
+margin-bottom:15px;
+
+border:none;
+
+border-radius:14px;
+
+background:
+rgba(255,255,255,0.06);
+
+color:white;
+
+font-size:16px;
+
+text-align:left;
+
+cursor:pointer;
+
+transition:0.3s;
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.sidebar button:hover{
+
+background:
+linear-gradient(
+to right,
+#ff6600,
+#ff9900
+);
+
+transform:translateX(5px);
+
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+
+flex:1;
+
+overflow-y:auto;
+
+padding:30px;
+
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+flex-wrap:wrap;
+
+gap:20px;
+
+}
+
+.search{
+
+background:
+rgba(255,255,255,0.06);
+
+padding:14px 18px;
+
+border-radius:40px;
+
+width:320px;
+
+max-width:100%;
+
+border:none;
+
+color:white;
+
+outline:none;
+
+}
+
+.profile{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.profile img{
+
+width:50px;
+
+height:50px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-bottom:30px;
+
+}
+
+.card{
+
+background:
+rgba(255,255,255,0.06);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+border-radius:22px;
+
+padding:25px;
+
+backdrop-filter: blur(10px);
+
+}
+
+.card i{
+
+font-size:28px;
+
+color:#ff6600;
+
+margin-bottom:15px;
+
+}
+
+.card h2{
+
+margin:0;
+
+font-size:34px;
+
+}
+
+.card p{
+
+opacity:0.7;
+
+margin-top:8px;
+
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+
+display:none;
+
+animation:fade 0.3s ease;
+
+}
+
+.section.active{
+
+display:block;
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:22px;
+
+margin-top:25px;
+
+}
+
+.product{
+
+background:
+rgba(255,255,255,0.06);
+
+border-radius:22px;
+
+overflow:hidden;
+
+}
+
+.product img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+}
+
+.product-info{
+
+padding:16px;
+
+}
+
+.product-info h3{
+
+margin:0;
+
+}
+
+.price{
+
+margin-top:10px;
+
+font-size:22px;
+
+font-weight:700;
+
+color:#ff9900;
+
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-box{
+
+background:
+rgba(255,255,255,0.06);
+
+padding:25px;
+
+border-radius:22px;
+
+margin-top:25px;
+
+}
+
+.form-box input,
+.form-box select{
+
+width:100%;
+
+padding:14px;
+
+margin-bottom:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:
+rgba(255,255,255,0.08);
+
+color:white;
+
+outline:none;
+
+}
+
+.form-box button{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:14px;
+
+background:
+linear-gradient(
+to right,
+#ff6600,
+#ff9900
+);
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+}
+
+/* =========================
+   REELS
+========================= */
+
+.reels-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+
+gap:20px;
+
+margin-top:25px;
+
+}
+
+.reels-grid iframe{
+
+width:100%;
+
+height:420px;
+
+border:none;
+
+border-radius:18px;
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+.dashboard{
+
+flex-direction:column;
+
+overflow:auto;
+
+}
+
+.sidebar{
+
+width:100%;
+
+flex-direction:row;
+
+overflow-x:auto;
+
+gap:12px;
+
+}
+
+.sidebar button{
+
+min-width:180px;
+
+}
+
+.main{
+
+padding:20px;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="dashboard glass-card fade-in">
+<div class="dashboard">
 
-  <h2>Seller Dashboard</h2>
+<!-- SIDEBAR -->
 
-  <button onclick="logoutSeller()">Logout</button>
+<div class="sidebar">
 
-  <h3>📊 Stats</h3>
-  <p id="totalProducts">Products: 0</p>
+<div class="logo">
+EMARKET
+</div>
 
-  <h3>Add Product</h3>
+<button onclick="showSection('overview')">
+<i class="fa-solid fa-chart-line"></i>
+Overview
+</button>
 
-  <input type="text" id="pName" placeholder="Product Name">
-  <input type="text" id="pPrice" placeholder="Price">
-  <input type="text" id="pImage" placeholder="Image URL">
+<button onclick="showSection('products')">
+<i class="fa-solid fa-box"></i>
+Products
+</button>
 
-  <select id="pCategory">
-    <option value="bikes">Bikes</option>
-    <option value="electronics">Electronics</option>
-  </select>
+<button onclick="showSection('upload')">
+<i class="fa-solid fa-upload"></i>
+Upload Product
+</button>
 
-  <button onclick="addProduct()">Upload Product</button>
+<button onclick="showSection('reels')">
+<i class="fa-solid fa-film"></i>
+Reels & Ads
+</button>
 
-  <h3>Upload Reel</h3>
+<button onclick="showSection('orders')">
+<i class="fa-solid fa-cart-shopping"></i>
+Orders
+</button>
 
-  <input type="text" id="reelUrl" placeholder="Video URL">
-  <button onclick="addReel()">Upload Reel</button>
+<button onclick="logoutSeller()">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</button>
 
 </div>
 
-<script src="script.js"></script>
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<input
+class="search"
+placeholder="Search dashboard...">
+
+<div class="profile">
+
+<img
+src="https://i.pravatar.cc/100">
+
+<div>
+
+<strong>
+Seller Account
+</strong>
+
+<br>
+
+<span style="opacity:.7;">
+Verified Seller
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- OVERVIEW -->
+
+<div
+class="section active"
+id="overview">
+
+<div class="stats">
+
+<div class="card">
+
+<i class="fa-solid fa-box"></i>
+
+<h2 id="totalProducts">
+0
+</h2>
+
+<p>
+Products
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<h2>
+248
+</h2>
+
+<p>
+Orders
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-dollar-sign"></i>
+
+<h2>
+$12K
+</h2>
+
+<p>
+Revenue
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-users"></i>
+
+<h2>
+1.2K
+</h2>
+
+<p>
+Customers
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PRODUCTS -->
+
+<div
+class="section"
+id="products">
+
+<h1>
+My Products
+</h1>
+
+<div
+class="products-grid"
+id="sellerProducts">
+
+</div>
+
+</div>
+
+<!-- UPLOAD -->
+
+<div
+class="section"
+id="upload">
+
+<h1>
+Upload Product
+</h1>
+
+<div class="form-box">
+
+<input
+id="pName"
+placeholder="Product Name">
+
+<input
+id="pPrice"
+placeholder="Price">
+
+<input
+id="pImage"
+placeholder="Image URL">
+
+<select id="pCategory">
+
+<option>
+electronics
+</option>
+
+<option>
+fashion
+</option>
+
+<option>
+beauty
+</option>
+
+<option>
+phones
+</option>
+
+<option>
+gaming
+</option>
+
+</select>
+
+<button onclick="addProduct()">
+
+Upload Product
+
+</button>
+
+</div>
+
+</div>
+
+<!-- REELS -->
+
+<div
+class="section"
+id="reels">
+
+<h1>
+Marketing Reels & Ads
+</h1>
+
+<div class="reels-grid">
+
+<iframe
+src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1"
+allowfullscreen>
+</iframe>
+
+<iframe
+src="https://www.youtube.com/embed/ysz5S6PUM-U?autoplay=1&mute=1"
+allowfullscreen>
+</iframe>
+
+<iframe
+src="https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=1&mute=1"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+<!-- ORDERS -->
+
+<div
+class="section"
+id="orders">
+
+<h1>
+Recent Orders
+</h1>
+
+<div class="form-box">
+
+<p>
+Order #EM24881 — Delivered
+</p>
+
+<hr>
+
+<p>
+Order #EM19322 — Processing
+</p>
+
+<hr>
+
+<p>
+Order #EM88922 — Paid
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js?v=99"></script>
+
+<script>
+
+/* =========================
+   SWITCH SECTION
+========================= */
+
+function showSection(id){
+
+document
+.querySelectorAll(".section")
+.forEach(section=>{
+
+section.classList.remove("active");
+
+});
+
+document
+.getElementById(id)
+.classList.add("active");
+
+}
+
+/* =========================
+   LOAD SELLER PRODUCTS
+========================= */
+
+function loadSellerProducts(){
+
+const container =
+document.getElementById(
+"sellerProducts"
+);
+
+if(!container) return;
+
+const products =
+JSON.parse(
+localStorage.getItem("products")
+) || [];
+
+container.innerHTML = "";
+
+document.getElementById(
+"totalProducts"
+).innerText =
+products.length;
+
+products.forEach(product=>{
+
+container.innerHTML += `
+
+<div class="product">
+
+<img src="${product.image}">
+
+<div class="product-info">
+
+<h3>
+${product.name}
+</h3>
+
+<div class="price">
+$${product.price}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadSellerProducts();
+
+</script>
 
 </body>
 </html>
