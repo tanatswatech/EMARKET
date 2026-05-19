@@ -423,6 +423,43 @@ Watch Reels
   </div>
 
 </div>
+<!-- CART OVERLAY -->
 
+<div id="cartOverlay" class="cart-overlay">
+
+  <div class="cart-box">
+
+    <div class="cart-header">
+
+      <h2>🛒 Your Cart</h2>
+
+      <button onclick="closeCart()">
+        ✖
+      </button>
+
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-footer">
+
+      <h3>
+
+        Total:
+        $<span id="cartTotal">0</span>
+
+      </h3>
+
+      <button onclick="checkoutCart()">
+
+        Proceed To Checkout
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
