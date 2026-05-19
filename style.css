@@ -1863,3 +1863,187 @@ border-bottom:
 font-size:18px;
 
 }
+/* =========================
+   REELS OVERLAY
+========================= */
+
+.reels-overlay{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:black;
+
+z-index:999999;
+
+display:none;
+
+flex-direction:column;
+
+overflow-y:auto;
+
+scroll-snap-type:y mandatory;
+
+}
+
+.reels-header{
+
+position:fixed;
+
+top:0;
+
+width:100%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px;
+
+z-index:99999;
+
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,0.8),
+transparent
+);
+
+}
+
+.reels-header h2{
+
+margin:0;
+
+font-size:24px;
+
+}
+
+.reels-header button{
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+
+font-size:22px;
+
+}
+
+/* =========================
+   FULL REEL
+========================= */
+
+.full-reel{
+
+position:relative;
+
+width:100%;
+
+max-width:430px;
+
+height:100vh;
+
+margin:auto;
+
+scroll-snap-align:start;
+
+overflow:hidden;
+
+background:black;
+
+}
+
+.full-reel video{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+}
+
+/* =========================
+   REEL INFO
+========================= */
+
+.reel-bottom{
+
+position:absolute;
+
+bottom:25px;
+left:20px;
+
+z-index:20;
+
+max-width:75%;
+
+}
+
+.reel-user{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+margin-bottom:12px;
+
+}
+
+.reel-user img{
+
+width:50px;
+height:50px;
+
+border-radius:50%;
+
+border:2px solid #ff6600;
+
+object-fit:cover;
+
+}
+
+/* =========================
+   REEL ACTIONS
+========================= */
+
+.reel-actions{
+
+position:absolute;
+
+right:15px;
+
+bottom:100px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:22px;
+
+z-index:20;
+
+}
+
+.reel-actions div{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+}
