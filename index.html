@@ -450,12 +450,19 @@ Watch Reels
 
       </h3>
 
-      <button onclick="checkoutCart()">
+     <button
+  class="cart-btn"
+  onclick="
+    addToCart(
+      '${product.name}',
+      ${product.price},
+      '${product.image}'
+    )
+">
 
-        Proceed To Checkout
+  Add To Cart
 
-      </button>
-
+</button>
     </div>
 
   </div>
