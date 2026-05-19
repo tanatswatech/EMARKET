@@ -11,9 +11,6 @@ function getEl(id) {
 /* =========================
    BUY SYSTEM
 ========================= */
-/* =========================
-   BUY PRODUCT
-========================= */
 
 function buyProduct(productName, productPrice) {
 
@@ -1060,3 +1057,63 @@ sendMessage();
 }
 
 });
+/* =========================
+   PAYMENT SYSTEM
+========================= */
+
+function pay() {
+
+const order =
+JSON.parse(
+localStorage.getItem("currentOrder")
+);
+
+if(!order){
+
+alert("No order selected");
+
+return;
+
+}
+
+const bar =
+document.getElementById("loadingBar");
+
+if(bar){
+
+bar.style.width = "100%";
+
+}
+
+setTimeout(()=>{
+
+if(bar){
+
+bar.style.width = "0%";
+
+}
+
+/* SAVE RECEIPT */
+
+const receipt = {
+
+...order,
+
+status: "Paid",
+
+paymentDate:
+new Date().toLocaleString()
+
+};
+
+localStorage.setItem(
+"receipt",
+JSON.stringify(receipt)
+);
+
+window.location.href =
+"receipt.html";
+
+},2000);
+
+}
