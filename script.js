@@ -11,15 +11,56 @@ function getEl(id) {
 /* =========================
    BUY SYSTEM
 ========================= */
-function buyProduct() {
-  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+/* =========================
+   BUY PRODUCT
+========================= */
 
-  if (!user) {
-    alert("Please login first");
-    window.location.href = "register.html";
-  } else {
-    window.location.href = "checkout.html";
-  }
+function buyProduct(productName, productPrice) {
+
+const user =
+JSON.parse(
+localStorage.getItem("loggedInUser")
+);
+
+if(!user){
+
+alert("Please login first");
+
+window.location.href =
+"register.html";
+
+return;
+
+}
+
+/* SAVE CURRENT ORDER */
+
+const order = {
+
+product: productName,
+
+price: productPrice,
+
+buyer: user.name,
+
+date: new Date().toLocaleString(),
+
+orderId:
+"EM" +
+Math.floor(Math.random()*999999)
+
+};
+
+localStorage.setItem(
+"currentOrder",
+JSON.stringify(order)
+);
+
+/* GO PAYMENT */
+
+window.location.href =
+"checkout.html";
+
 }
 
 /* =========================
