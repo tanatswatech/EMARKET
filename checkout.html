@@ -1,189 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMARKET Checkout</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+EMARKET Checkout
+</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 <style>
 
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, #1a1a1a, #050505);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+/* =========================
+   BODY
+========================= */
+
+body{
+
+margin:0;
+
+font-family:'Poppins',sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#050505,
+#101820,
+#181818
+);
+
+color:white;
+
+padding:40px;
+
+display:flex;
+
+justify-content:center;
+
 }
 
-/* MAIN LAYOUT */
-.checkout-container {
-  width: 90%;
-  max-width: 1100px;
-  display: flex;
-  gap: 20px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 25px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+/* =========================
+   CHECKOUT BOX
+========================= */
+
+.checkout-box{
+
+width:900px;
+
+max-width:100%;
+
+background:
+rgba(255,255,255,0.06);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+backdrop-filter: blur(14px);
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,0.5);
+
 }
 
-/* LEFT SIDE */
-.summary {
-  flex: 1;
-  padding: 30px;
-  background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
+/* =========================
+   TITLE
+========================= */
+
+h1{
+
+margin-top:0;
+
+color:#ff6600;
+
+font-size:36px;
+
 }
 
-.summary h2 {
-  margin-bottom: 20px;
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.product-preview{
+
+display:flex;
+
+gap:20px;
+
+align-items:center;
+
+background:
+rgba(255,255,255,0.05);
+
+padding:20px;
+
+border-radius:18px;
+
+margin-top:25px;
+
 }
 
-.product-box {
-  background: rgba(255,255,255,0.05);
-  padding: 15px;
-  border-radius: 18px;
-  margin-bottom: 20px;
+.product-preview img{
+
+width:150px;
+
+height:150px;
+
+object-fit:cover;
+
+border-radius:18px;
+
 }
 
-.product-box img {
-  width: 100%;
-  border-radius: 12px;
+.product-info h2{
+
+margin:0;
+
 }
 
-.price {
-  font-size: 22px;
-  color: #ff9900;
-  margin-top: 10px;
+.price{
+
+margin-top:10px;
+
+font-size:26px;
+
+font-weight:bold;
+
+color:#ff9900;
+
 }
 
-/* RIGHT SIDE */
-.payment {
-  flex: 1;
-  padding: 30px;
-  background: linear-gradient(145deg, #101820, #0b0b0b);
+/* =========================
+   PAYMENT OPTIONS
+========================= */
+
+.payment-options{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+
+gap:18px;
+
+margin-top:35px;
+
 }
 
-.payment h2 {
-  margin-bottom: 20px;
+.payment-card{
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+2px solid transparent;
+
+padding:20px;
+
+border-radius:18px;
+
+cursor:pointer;
+
+transition:0.3s;
+
+text-align:center;
+
 }
 
-/* INPUTS */
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.08);
-  color: white;
+.payment-card:hover{
+
+transform:translateY(-5px);
+
+border-color:#ff6600;
+
 }
 
-/* BUTTON */
-button {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(to right, #ff6600, #ff9900);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+.payment-card.active{
+
+border-color:#ff6600;
+
+background:
+rgba(255,102,0,0.12);
+
 }
 
-button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 25px rgba(255,102,0,0.4);
+.payment-card img{
+
+width:70px;
+
+height:70px;
+
+object-fit:contain;
+
+margin-bottom:12px;
+
 }
 
-/* BADGES */
-.badges {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-  font-size: 12px;
-  opacity: 0.8;
+.payment-card h3{
+
+margin:0;
+
 }
 
-.badge {
-  padding: 5px 10px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 20px;
+/* =========================
+   PAYMENT DETAILS
+========================= */
+
+.payment-details{
+
+margin-top:30px;
+
+background:
+rgba(255,255,255,0.05);
+
+padding:25px;
+
+border-radius:18px;
+
+line-height:1.9;
+
+}
+
+/* =========================
+   CARD FORM
+========================= */
+
+.card-form{
+
+display:none;
+
+margin-top:20px;
+
+}
+
+.card-form input{
+
+width:100%;
+
+padding:14px;
+
+margin-bottom:15px;
+
+border:none;
+
+border-radius:12px;
+
+background:
+rgba(255,255,255,0.08);
+
+color:white;
+
+outline:none;
+
+}
+
+/* =========================
+   PAY BUTTON
+========================= */
+
+button{
+
+width:100%;
+
+margin-top:30px;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+background:
+linear-gradient(
+to right,
+#ff6600,
+#ff9900
+);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.02);
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+body{
+
+padding:20px;
+
+}
+
+.product-preview{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="checkout-container">
+<div class="checkout-box">
 
-  <!-- LEFT -->
-  <div class="summary">
+<h1>
+Secure Checkout
+</h1>
 
-    <h2>Order Summary</h2>
+<!-- PRODUCT -->
 
-    <div class="product-box">
+<div class="product-preview">
 
-      <img id="productImage" src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8">
+<img
+id="productImage"
+src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
 
-      <h3 id="productName">Sample Product</h3>
+<div class="product-info">
 
-      <p class="price" id="productPrice">$0.00</p>
+<h2 id="productName">
+Product
+</h2>
 
-    </div>
+<div class="price">
 
-    <p>✔ Fast Delivery</p>
-    <p>✔ Verified Seller</p>
-    <p>✔ Secure Payment</p>
+$
+<span id="productPrice">
+0
+</span>
 
-    <div class="badges">
-      <div class="badge">Visa</div>
-      <div class="badge">Mastercard</div>
-      <div class="badge">EcoCash</div>
-    </div>
+</div>
 
-  </div>
+<p>
+Fast delivery • Secure payment • Verified seller
+</p>
 
-  <!-- RIGHT -->
-  <div class="payment">
+</div>
 
-    <h2>Payment Details</h2>
+</div>
 
-    <input type="text" placeholder="Full Name">
+<!-- PAYMENT OPTIONS -->
 
-    <input type="text" placeholder="Card Number">
+<h2 style="margin-top:40px;">
+Choose Payment Method
+</h2>
 
-    <input type="text" placeholder="Expiry Date">
+<div class="payment-options">
 
-    <input type="text" placeholder="CVV">
+<div
+class="payment-card"
+onclick="selectPayment('ecocash',this)">
 
-    <select>
-      <option>Visa / Mastercard</option>
-      <option>EcoCash</option>
-      <option>Innbucks</option>
-    </select>
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/5/51/Ecocash-logo.png">
 
-    <button onclick="payNow()">Pay Now</button>
+<h3>
+EcoCash
+</h3>
 
-  </div>
+</div>
+
+<div
+class="payment-card"
+onclick="selectPayment('innbucks',this)">
+
+<img
+src="https://seeklogo.com/images/I/innbucks-logo-3E5F1C1D7F-seeklogo.com.png">
+
+<h3>
+Innbucks
+</h3>
+
+</div>
+
+<div
+class="payment-card"
+onclick="selectPayment('visa',this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png">
+
+<h3>
+Visa
+</h3>
+
+</div>
+
+<div
+class="payment-card"
+onclick="selectPayment('mastercard',this)">
+
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg">
+
+<h3>
+Mastercard
+</h3>
+
+</div>
+
+</div>
+
+<!-- DETAILS -->
+
+<div
+class="payment-details"
+id="paymentDetails">
+
+Please select a payment method above.
+
+</div>
+
+<!-- CARD FORM -->
+
+<div
+class="card-form"
+id="cardForm">
+
+<input
+type="text"
+placeholder="Card Holder Name">
+
+<input
+type="text"
+placeholder="Card Number">
+
+<input
+type="text"
+placeholder="Expiry Date">
+
+<input
+type="text"
+placeholder="CVV">
+
+</div>
+
+<button onclick="pay()">
+
+Complete Payment
+
+</button>
 
 </div>
 
 <script>
 
-function payNow() {
-  alert("Payment Successful ✅");
-  window.location.href = "receipt.html";
+/* =========================
+   LOAD PRODUCT
+========================= */
+
+const order =
+JSON.parse(
+localStorage.getItem("currentOrder")
+);
+
+if(order){
+
+document.getElementById(
+"productName"
+).innerText =
+order.product;
+
+document.getElementById(
+"productPrice"
+).innerText =
+order.price;
+
+}
+
+/* =========================
+   PAYMENT SELECT
+========================= */
+
+let selectedPayment = "";
+
+function selectPayment(type,el){
+
+selectedPayment = type;
+
+/* ACTIVE */
+
+document
+.querySelectorAll(".payment-card")
+.forEach(card=>{
+
+card.classList.remove("active");
+
+});
+
+el.classList.add("active");
+
+/* DETAILS */
+
+const details =
+document.getElementById(
+"paymentDetails"
+);
+
+const cardForm =
+document.getElementById(
+"cardForm"
+);
+
+cardForm.style.display =
+"none";
+
+if(type === "ecocash"){
+
+details.innerHTML = `
+
+<h2 style="color:#00d757;">
+Pay with EcoCash
+</h2>
+
+<p>
+
+Dial:
+
+<strong>
+
+*151*2*2*59821*${order.price}#
+
+</strong>
+
+</p>
+
+<p>
+
+or use the EcoCash App.
+
+</p>
+
+<p>
+
+Live life the EcoCash Way!
+
+</p>
+
+`;
+
+}
+
+else if(type === "innbucks"){
+
+details.innerHTML = `
+
+<h2 style="color:#ffcc00;">
+Pay with Innbucks
+</h2>
+
+<p>
+
+Open your Innbucks App.
+
+</p>
+
+<p>
+
+Send payment to merchant code:
+
+<strong>
+
+EMARKET248
+
+</strong>
+
+</p>
+
+<p>
+
+Fast • Safe • Instant
+
+</p>
+
+`;
+
+}
+
+else if(type === "visa"){
+
+details.innerHTML = `
+
+<h2 style="color:#1a73e8;">
+Visa Payment
+</h2>
+
+<p>
+
+Enter your Visa card details below.
+
+</p>
+
+`;
+
+cardForm.style.display =
+"block";
+
+}
+
+else if(type === "mastercard"){
+
+details.innerHTML = `
+
+<h2 style="color:#ff6600;">
+Mastercard Payment
+</h2>
+
+<p>
+
+Enter your Mastercard details below.
+
+</p>
+
+`;
+
+cardForm.style.display =
+"block";
+
+}
+
 }
 
 </script>
+
+<script src="script.js?v=99"></script>
 
 </body>
 </html>
