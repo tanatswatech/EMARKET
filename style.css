@@ -1816,3 +1816,50 @@ max-width: 100%;
 min-width: 0;
 
 }
+
+/* =========================
+   RECEIPT
+========================= */
+
+.receipt-box{
+
+max-width:600px;
+
+margin:80px auto;
+
+padding:40px;
+
+border-radius:25px;
+
+background:
+rgba(255,255,255,0.08);
+
+backdrop-filter: blur(14px);
+
+border:
+1px solid rgba(255,255,255,0.08);
+
+}
+
+.receipt-box h1{
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+.receipt-row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:16px 0;
+
+border-bottom:
+1px solid rgba(255,255,255,0.08);
+
+font-size:18px;
+
+}
