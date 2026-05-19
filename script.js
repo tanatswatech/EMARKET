@@ -1280,3 +1280,320 @@ document.getElementById(
 ).style.display = "none";
 
 }
+/* =========================
+   CART SYSTEM FULL
+========================= */
+
+function getCart() {
+
+  return JSON.parse(
+    localStorage.getItem("cart")
+  ) || [];
+
+}
+
+function saveCart(cart) {
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
+
+}
+
+/* ADD TO CART */
+
+function addToCart(productName, productPrice, productImage) {
+
+  let cart = getCart();
+
+  const existing = cart.find(
+    item => item.name === productName
+  );
+
+  if (existing) {
+
+    existing.qty += 1;
+
+  } else {
+
+    cart.push({
+
+      name: productName,
+
+      price: productPrice,
+
+      image: productImage,
+
+      qty: 1
+
+    });
+
+  }
+
+  saveCart(cart);
+
+  updateCartCount();
+
+  alert(productName + " added to cart 🛒");
+
+}
+
+/* REMOVE ITEM */
+
+function removeFromCart(productName) {
+
+  let cart = getCart();
+
+  cart = cart.filter(
+    item => item.name !== productName
+  );
+
+  saveCart(cart);
+
+  loadCart();
+
+  updateCartCount();
+
+}
+
+/* UPDATE QTY */
+
+function changeQty(productName, type) {
+
+  let cart = getCart();
+
+  cart.forEach(item => {
+
+    if (item.name === productName) {
+
+      if (type === "plus") {
+
+        item.qty += 1;
+
+      } else {
+
+        item.qty -= 1;
+
+      }
+
+    }
+
+  });
+
+  cart = cart.filter(item => item.qty > 0);
+
+  saveCart(cart);
+
+  loadCart();
+
+  updateCartCount();
+
+}
+
+/* LOAD CART */
+
+function loadCart() {
+
+  const cartItems =
+    document.getElementById("cartItems");
+
+  const cartTotal =
+    document.getElementById("cartTotal");
+
+  if (!cartItems) return;
+
+  const cart = getCart();
+
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML = `
+
+      <div class="empty-cart">
+
+        <h3>🛒 Cart Empty</h3>
+
+        <p>No products added yet.</p>
+
+      </div>
+
+    `;
+
+    if (cartTotal) {
+
+      cartTotal.innerText = "0";
+
+    }
+
+    return;
+
+  }
+
+  cart.forEach(item => {
+
+    total += item.price * item.qty;
+
+    const div =
+      document.createElement("div");
+
+    div.className = "cart-item";
+
+    div.innerHTML = `
+
+      <img src="${item.image}">
+
+      <div class="cart-info">
+
+        <h3>${item.name}</h3>
+
+        <p>$${item.price}</p>
+
+        <div class="qty-box">
+
+          <button onclick="
+            changeQty('${item.name}','minus')
+          ">-</button>
+
+          <span>${item.qty}</span>
+
+          <button onclick="
+            changeQty('${item.name}','plus')
+          ">+</button>
+
+        </div>
+
+      </div>
+
+      <button
+        class="remove-btn"
+        onclick="
+          removeFromCart('${item.name}')
+        ">
+
+        ✖
+
+      </button>
+
+    `;
+
+    cartItems.appendChild(div);
+
+  });
+
+  if (cartTotal) {
+
+    cartTotal.innerText = total;
+
+  }
+
+}
+
+/* UPDATE SMALL CART COUNT */
+
+function updateCartCount() {
+
+  const cart = getCart();
+
+  const count =
+    document.getElementById("cartCount");
+
+  if (!count) return;
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    total += item.qty;
+
+  });
+
+  count.innerText = total;
+
+}
+
+/* OPEN CART */
+
+function openCart() {
+
+  const cart =
+    document.getElementById("cartOverlay");
+
+  if (cart) {
+
+    cart.style.display = "flex";
+
+  }
+
+  loadCart();
+
+}
+
+/* CLOSE CART */
+
+function closeCart() {
+
+  const cart =
+    document.getElementById("cartOverlay");
+
+  if (cart) {
+
+    cart.style.display = "none";
+
+  }
+
+}
+
+/* GO CHECKOUT */
+
+function checkoutCart() {
+
+  const cart = getCart();
+
+  if (cart.length === 0) {
+
+    alert("Cart is empty");
+
+    return;
+
+  }
+
+  localStorage.setItem(
+    "checkoutCart",
+    JSON.stringify(cart)
+  );
+
+  window.location.href =
+    "checkout.html";
+
+}
+
+/* =========================
+   INIT CART
+========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    updateCartCount();
+
+    loadCart();
+
+  }
+);
+
+/* GLOBALS */
+
+window.openCart = openCart;
+
+window.closeCart = closeCart;
+
+window.checkoutCart = checkoutCart;
+
+window.changeQty = changeQty;
+
+window.removeFromCart = removeFromCart;
