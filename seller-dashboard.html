@@ -1018,24 +1018,41 @@ ${product.seller}
 
 function addProduct(){
 
-/* GET SELLER */
+/* GET SELLER SESSION */
 
-const seller =
-getLoggedSeller();
+let seller =
+JSON.parse(
+localStorage.getItem(
+"loggedInSeller"
+)
+);
 
-/* NOT LOGGED */
+/* FALLBACK */
+
+if(!seller){
+
+seller =
+JSON.parse(
+localStorage.getItem(
+"loggedInUser"
+)
+);
+
+}
+
+/* FINAL CHECK */
 
 if(!seller){
 
 alert(
-"Please Login As Seller"
+"Seller session not found"
 );
 
 return;
 
 }
 
-/* GET INPUTS */
+/* GET INPUT VALUES */
 
 const name =
 document.getElementById(
@@ -1073,7 +1090,7 @@ return;
 
 }
 
-/* GET STORAGE */
+/* GET PRODUCTS */
 
 let marketplaceProducts =
 JSON.parse(
@@ -1096,7 +1113,7 @@ image: image,
 
 category: category,
 
-seller: seller.name,
+seller: seller.name || "Unknown Seller",
 
 sellerRating:
 (
@@ -1118,7 +1135,7 @@ marketplaceProducts
 )
 );
 
-/* CLEAR INPUTS */
+/* CLEAR FORM */
 
 document.getElementById(
 "pName"
@@ -1136,14 +1153,6 @@ document.getElementById(
 
 loadSellerProducts();
 
-/* REFRESH MAIN MARKETPLACE */
-
-if(window.opener){
-
-window.opener.location.reload();
-
-}
-
 /* SUCCESS */
 
 alert(
@@ -1151,7 +1160,6 @@ alert(
 );
 
 }
-
 /* =========================
    LOGOUT
 ========================= */
