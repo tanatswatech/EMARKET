@@ -826,7 +826,76 @@ document
 }
 
 /* =========================
-   GET LOGGED IN SELLER
+   CREATE DEFAULT SELLER
+========================= */
+
+/*
+THIS AUTO CREATES A SELLER SESSION
+IF NONE EXISTS
+*/
+
+function createDefaultSeller(){
+
+let seller =
+JSON.parse(
+localStorage.getItem(
+"loggedInSeller"
+)
+);
+
+if(!seller){
+
+seller = {
+
+name: "Benike Technologies",
+
+email: "seller@emarket.com",
+
+rating: "4.9"
+
+};
+
+/* SAVE SESSION */
+
+localStorage.setItem(
+"loggedInSeller",
+JSON.stringify(seller)
+);
+
+localStorage.setItem(
+"loggedInUser",
+JSON.stringify(seller)
+);
+
+/* SAVE REGISTERED SELLERS */
+
+let sellers =
+JSON.parse(
+localStorage.getItem(
+"registeredSellers"
+)
+) || [];
+
+const exists =
+sellers.find(s => s.email === seller.email);
+
+if(!exists){
+
+sellers.push(seller);
+
+localStorage.setItem(
+"registeredSellers",
+JSON.stringify(sellers)
+);
+
+}
+
+}
+
+}
+
+/* =========================
+   GET LOGGED SELLER
 ========================= */
 
 function getLoggedSeller(){
@@ -871,36 +940,18 @@ if(!container) return;
 const seller =
 getLoggedSeller();
 
-/* NO SELLER SESSION */
+/* FORCE CREATE */
 
 if(!seller){
 
-container.innerHTML = `
-
-<div class="form-box">
-
-<h3>
-Seller Session Not Found
-</h3>
-
-<p style="
-opacity:.7;
-margin-top:10px;
-">
-Please login again.
-</p>
-
-</div>
-
-`;
-
-document.getElementById(
-"totalProducts"
-).innerText = "0";
-
-return;
+createDefaultSeller();
 
 }
+
+/* GET AGAIN */
+
+const activeSeller =
+getLoggedSeller();
 
 /* GET PRODUCTS */
 
@@ -911,12 +962,13 @@ localStorage.getItem(
 )
 ) || [];
 
-/* FILTER SELLER PRODUCTS */
+/* FILTER */
 
 const sellerProducts =
 allProducts.filter(product =>
 
-product.seller === seller.name
+product.seller ===
+activeSeller.name
 
 );
 
@@ -924,14 +976,14 @@ product.seller === seller.name
 
 container.innerHTML = "";
 
-/* UPDATE TOTAL */
+/* TOTAL */
 
 document.getElementById(
 "totalProducts"
 ).innerText =
 sellerProducts.length;
 
-/* NO PRODUCTS */
+/* EMPTY */
 
 if(sellerProducts.length === 0){
 
@@ -987,7 +1039,7 @@ font-size:14px;
 opacity:.85;
 ">
 
-⭐ ${product.sellerRating || "4.8"}
+⭐ ${product.sellerRating}
 
 </div>
 
@@ -1018,41 +1070,12 @@ ${product.seller}
 
 function addProduct(){
 
-/* GET SELLER SESSION */
+/* GET SELLER */
 
-let seller =
-JSON.parse(
-localStorage.getItem(
-"loggedInSeller"
-)
-);
+const seller =
+getLoggedSeller();
 
-/* FALLBACK */
-
-if(!seller){
-
-seller =
-JSON.parse(
-localStorage.getItem(
-"loggedInUser"
-)
-);
-
-}
-
-/* FINAL CHECK */
-
-if(!seller){
-
-alert(
-"Seller session not found"
-);
-
-return;
-
-}
-
-/* GET INPUT VALUES */
+/* INPUTS */
 
 const name =
 document.getElementById(
@@ -1074,7 +1097,7 @@ document.getElementById(
 "pCategory"
 ).value;
 
-/* VALIDATION */
+/* VALIDATE */
 
 if(
 !name ||
@@ -1113,7 +1136,7 @@ image: image,
 
 category: category,
 
-seller: seller.name || "Unknown Seller",
+seller: seller.name,
 
 sellerRating:
 (
@@ -1135,7 +1158,7 @@ marketplaceProducts
 )
 );
 
-/* CLEAR FORM */
+/* CLEAR */
 
 document.getElementById(
 "pName"
@@ -1149,17 +1172,16 @@ document.getElementById(
 "pImage"
 ).value = "";
 
-/* RELOAD PRODUCTS */
+/* RELOAD */
 
 loadSellerProducts();
-
-/* SUCCESS */
 
 alert(
 "Product Uploaded Successfully"
 );
 
 }
+
 /* =========================
    LOGOUT
 ========================= */
@@ -1180,18 +1202,17 @@ window.location.href =
 }
 
 /* =========================
-   AUTO LOAD
+   START SYSTEM
 ========================= */
 
 window.onload = function(){
+
+createDefaultSeller();
 
 loadSellerProducts();
 
 };
 
 </script>
-
-</script>
-
 </body>
 </html>
