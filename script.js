@@ -212,174 +212,263 @@ function addProduct() {
 }
 
 /* =========================
-   LOAD PRODUCTS (CORE FIX)
+   MARKETPLACE PRODUCTS
 ========================= */
-function loadProducts() {
-  let products = JSON.parse(localStorage.getItem("products"));
 
-  if (!products || products.length === 0) {
-    products = generateDemoProducts();
+let marketplaceProducts =
+JSON.parse(
+localStorage.getItem("marketplaceProducts")
+) || [];
 
-    localStorage.setItem("products", JSON.stringify(products));
-  }
+/* =========================
+   AUTO SELLER RATING
+========================= */
 
-  displayProducts(products);
+function generateSellerRating(){
+
+return (
+(Math.random() * 1 + 4)
+).toFixed(1);
+
 }
 
 /* =========================
-   BENIKE TECHNOLOGIES PRODUCTS
+   UPLOAD PRODUCT
 ========================= */
 
-const products = [
+function uploadProduct(product){
 
-{
-  id: 1,
-  name: "HP EliteBook Laptop",
-  price: 450,
-  image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
-  category: "Computers",
-  seller: "Benike Technologies"
-},
+product.sellerRating =
+generateSellerRating();
 
-{
-  id: 2,
-  name: "Gaming Desktop PC",
-  price: 850,
-  image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7",
-  category: "Computers",
-  seller: "Benike Technologies"
-},
+marketplaceProducts.push(product);
 
-{
-  id: 3,
-  name: "Canon DSLR Camera",
-  price: 600,
-  image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
-  category: "Electronics",
-  seller: "Benike Technologies"
-},
+localStorage.setItem(
+"marketplaceProducts",
+JSON.stringify(marketplaceProducts)
+);
 
-{
-  id: 4,
-  name: "Wireless Headphones",
-  price: 85,
-  image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
-  category: "Accessories",
-  seller: "Benike Technologies"
-},
+renderProducts();
 
-{
-  id: 5,
-  name: "iPhone 14 Pro",
-  price: 1100,
-  image: "https://images.unsplash.com/photo-1678652197831-2d180705cd2c",
-  category: "Phones",
-  seller: "Benike Technologies"
-},
-
-{
-  id: 6,
-  name: "Samsung Smart TV",
-  price: 780,
-  image: "https://images.unsplash.com/photo-1593784991095-a205069470b6",
-  category: "Electronics",
-  seller: "Benike Technologies"
-},
-
-{
-  id: 7,
-  name: "Bluetooth Speaker",
-  price: 65,
-  image: "https://images.unsplash.com/photo-1589003077984-894e133dabab",
-  category: "Accessories",
-  seller: "Benike Technologies"
-},
-
-{
-  id: 8,
-  name: "Office Printer",
-  price: 230,
-  image: "https://images.unsplash.com/photo-1612810806695-30f7a8258391",
-  category: "Office",
-  seller: "Benike Technologies"
 }
 
-];
-
 /* =========================
-   DISPLAY PRODUCTS (FIXED MAIN BUG)
+   RENDER PRODUCTS
 ========================= */
-function displayProducts(products) {
-  const container =
-    getEl("productList") ||
-    getEl("localProducts") ||
-    getEl("internationalProducts");
 
-  if (!container) {
-    console.error("❌ No product container found in HTML");
-    return;
-  }
+function renderProducts(){
 
-  container.innerHTML = "";
+const container =
+document.getElementById("productGrid") ||
 
-  products.forEach(product => {
-    const div = document.createElement("div");
-    div.className = "product-card";
+document.getElementById("productList") ||
 
-    div.innerHTML = `
-      <img src="${product.image}" />
-      <div class="product-info">
-        <h3>${product.name}</h3>
-        <p>$${product.price}</p>
+document.getElementById("localProducts") ||
 
-        <button onclick="addToCart('${product.name}')">Add To Cart</button>
-       <button
+document.getElementById("internationalProducts");
+
+if(!container){
+
+console.log("No product container found");
+
+return;
+
+}
+
+container.innerHTML = "";
+
+marketplaceProducts.forEach(product => {
+
+const div =
+document.createElement("div");
+
+div.className =
+"product-card";
+
+div.innerHTML = `
+
+<img src="${product.image}" />
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p>$${product.price}</p>
+
+<div class="rating">
+
+⭐ ${product.sellerRating}
+Seller Rating
+
+</div>
+
+<div style="
+margin-top:8px;
+font-size:14px;
+opacity:0.8;
+">
+
+👤 ${product.seller}
+
+</div>
+
+<div class="icon-row">
+
+<span>❤️</span>
+
+<span>🔥</span>
+
+<span>🛒</span>
+
+</div>
+
+<button
 class="cart-btn"
-onclick="buyProduct(
-'${product.name}',
-'${product.price}'
-)">
+onclick='addToCart(
+"${product.name}"
+)'
+>
+
+Add To Cart
+
+</button>
+
+<button
+style="
+margin-top:10px;
+width:100%;
+"
+onclick='buyProduct(
+"${product.name}",
+${product.price}
+)'
+>
 
 Buy Now
 
 </button>
-      </div>
-    `;
 
-    container.appendChild(div);
-  });
+</div>
+
+`;
+
+container.appendChild(div);
+
+});
+
 }
 
 /* =========================
    FILTER PRODUCTS
 ========================= */
-function filterProducts(category) {
-  const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  if (category === "all") {
-    displayProducts(products);
-    return;
-  }
+function filterProducts(category){
 
-  const filtered = products.filter(p => p.category === category);
+if(category === "all"){
 
-  displayProducts(filtered);
+renderProducts();
+
+return;
+
+}
+
+const filtered =
+marketplaceProducts.filter(
+p => p.category === category
+);
+
+const container =
+document.getElementById("productGrid");
+
+container.innerHTML = "";
+
+filtered.forEach(product => {
+
+container.innerHTML += `
+
+<div class="product-card">
+
+<img src="${product.image}" />
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<p>$${product.price}</p>
+
+<div class="rating">
+
+⭐ ${product.sellerRating}
+
+</div>
+
+<div>
+
+👤 ${product.seller}
+
+</div>
+
+<button
+class="cart-btn"
+onclick='addToCart(
+"${product.name}"
+)'
+>
+
+Add To Cart
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
 }
 
 /* =========================
    MARKET SWITCH
 ========================= */
-function switchMarket(type) {
-  const buttons = document.querySelectorAll(".market-btn");
 
-  buttons.forEach(b => b.classList.remove("active-market"));
+function switchMarket(type){
 
-  if (type === "national") {
-    buttons[0]?.classList.add("active-market");
-  } else {
-    buttons[1]?.classList.add("active-market");
-  }
+const buttons =
+document.querySelectorAll(
+".market-btn"
+);
+
+buttons.forEach(btn => {
+
+btn.classList.remove(
+"active-market"
+);
+
+});
+
+if(type === "national"){
+
+buttons[0]?.classList.add(
+"active-market"
+);
+
+}else{
+
+buttons[1]?.classList.add(
+"active-market"
+);
+
 }
+
+}
+
+/* =========================
+   START PRODUCTS
+========================= */
+
+renderProducts();
 
 /* =========================
    REELS SYSTEM
