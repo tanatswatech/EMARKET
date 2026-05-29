@@ -838,21 +838,40 @@ document.getElementById(
 
 if(!container) return;
 
+/* GET SELLER ACCOUNT */
+
 const seller =
 JSON.parse(
 localStorage.getItem(
-"loggedInUser"
+"loggedInSeller"
 )
 );
 
+/* IF NO SELLER SESSION */
+
 if(!seller){
 
-container.innerHTML =
-"<p>Please login</p>";
+container.innerHTML = `
+
+<div class="form-box">
+
+<h3>
+Seller Session Not Found
+</h3>
+
+<p style="opacity:.7;">
+Please login again.
+</p>
+
+</div>
+
+`;
 
 return;
 
 }
+
+/* GET ALL PRODUCTS */
 
 const allProducts =
 JSON.parse(
@@ -861,6 +880,8 @@ localStorage.getItem(
 )
 ) || [];
 
+/* FILTER ONLY THIS SELLER PRODUCTS */
+
 const sellerProducts =
 allProducts.filter(product =>
 
@@ -868,12 +889,18 @@ product.seller === seller.name
 
 );
 
+/* CLEAR CONTAINER */
+
 container.innerHTML = "";
+
+/* UPDATE TOTAL */
 
 document.getElementById(
 "totalProducts"
 ).innerText =
 sellerProducts.length;
+
+/* IF NO PRODUCTS */
 
 if(sellerProducts.length === 0){
 
@@ -885,9 +912,14 @@ container.innerHTML = `
 No Products Uploaded Yet
 </h3>
 
-<p style="opacity:.7;">
+<p style="
+opacity:.7;
+margin-top:10px;
+">
+
 Upload your first product
-to start selling.
+to start selling on EMARKET.
+
 </p>
 
 </div>
@@ -897,6 +929,8 @@ to start selling.
 return;
 
 }
+
+/* SHOW PRODUCTS */
 
 sellerProducts.forEach(product=>{
 
@@ -918,10 +952,22 @@ $${product.price}
 
 <div style="
 margin-top:10px;
-opacity:.7;
+opacity:.8;
+font-size:14px;
 ">
 
-⭐ ${product.sellerRating}
+⭐ ${product.sellerRating || "4.8"}
+
+</div>
+
+<div style="
+margin-top:6px;
+font-size:13px;
+opacity:.6;
+">
+
+Seller:
+${product.seller}
 
 </div>
 
@@ -935,6 +981,15 @@ opacity:.7;
 
 }
 
+/* =========================
+   AUTO LOAD
+========================= */
+
+window.onload = function(){
+
+loadSellerProducts();
+
+};
 /* =========================
    ADD PRODUCT
 ========================= */
