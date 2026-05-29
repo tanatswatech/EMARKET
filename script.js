@@ -227,25 +227,84 @@ function loadProducts() {
 }
 
 /* =========================
-   DEMO PRODUCTS (100+ SAFE)
+   BENIKE TECHNOLOGIES PRODUCTS
 ========================= */
-function generateDemoProducts() {
-  const base = [
-    { name: "iPhone 15 Pro", price: 1200, image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569", category: "electronics" },
-    { name: "MacBook Pro", price: 2500, image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8", category: "electronics" },
-    { name: "Nike Shoes", price: 120, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff", category: "fashion" },
-    { name: "Gaming PC", price: 3200, image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7", category: "gaming" },
-    { name: "Luxury Watch", price: 4000, image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49", category: "luxury" }
-  ];
 
-  let big = [];
+const products = [
 
-  for (let i = 0; i < 30; i++) {
-    big = big.concat(base.map(p => ({ ...p })));
-  }
+{
+  id: 1,
+  name: "HP EliteBook Laptop",
+  price: 450,
+  image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853",
+  category: "Computers",
+  seller: "Benike Technologies"
+},
 
-  return big;
+{
+  id: 2,
+  name: "Gaming Desktop PC",
+  price: 850,
+  image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7",
+  category: "Computers",
+  seller: "Benike Technologies"
+},
+
+{
+  id: 3,
+  name: "Canon DSLR Camera",
+  price: 600,
+  image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
+  category: "Electronics",
+  seller: "Benike Technologies"
+},
+
+{
+  id: 4,
+  name: "Wireless Headphones",
+  price: 85,
+  image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+  category: "Accessories",
+  seller: "Benike Technologies"
+},
+
+{
+  id: 5,
+  name: "iPhone 14 Pro",
+  price: 1100,
+  image: "https://images.unsplash.com/photo-1678652197831-2d180705cd2c",
+  category: "Phones",
+  seller: "Benike Technologies"
+},
+
+{
+  id: 6,
+  name: "Samsung Smart TV",
+  price: 780,
+  image: "https://images.unsplash.com/photo-1593784991095-a205069470b6",
+  category: "Electronics",
+  seller: "Benike Technologies"
+},
+
+{
+  id: 7,
+  name: "Bluetooth Speaker",
+  price: 65,
+  image: "https://images.unsplash.com/photo-1589003077984-894e133dabab",
+  category: "Accessories",
+  seller: "Benike Technologies"
+},
+
+{
+  id: 8,
+  name: "Office Printer",
+  price: 230,
+  image: "https://images.unsplash.com/photo-1612810806695-30f7a8258391",
+  category: "Office",
+  seller: "Benike Technologies"
 }
+
+];
 
 /* =========================
    DISPLAY PRODUCTS (FIXED MAIN BUG)
