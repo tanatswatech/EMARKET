@@ -81,6 +81,8 @@ display:flex;
 
 flex-direction:column;
 
+overflow-y:auto;
+
 }
 
 .logo{
@@ -334,6 +336,9 @@ rgba(255,255,255,0.06);
 border-radius:22px;
 
 overflow:hidden;
+
+border:
+1px solid rgba(255,255,255,0.08);
 
 }
 
@@ -798,8 +803,6 @@ Order #EM88922 — Paid
 
 </div>
 
-<script src="script.js?v=99"></script>
-
 <script>
 
 /* =========================
@@ -835,19 +838,67 @@ document.getElementById(
 
 if(!container) return;
 
-const products =
+const seller =
 JSON.parse(
-localStorage.getItem("products")
+localStorage.getItem(
+"loggedInUser"
+)
+);
+
+if(!seller){
+
+container.innerHTML =
+"<p>Please login</p>";
+
+return;
+
+}
+
+const allProducts =
+JSON.parse(
+localStorage.getItem(
+"marketplaceProducts"
+)
 ) || [];
+
+const sellerProducts =
+allProducts.filter(product =>
+
+product.seller === seller.name
+
+);
 
 container.innerHTML = "";
 
 document.getElementById(
 "totalProducts"
 ).innerText =
-products.length;
+sellerProducts.length;
 
-products.forEach(product=>{
+if(sellerProducts.length === 0){
+
+container.innerHTML = `
+
+<div class="form-box">
+
+<h3>
+No Products Uploaded Yet
+</h3>
+
+<p style="opacity:.7;">
+Upload your first product
+to start selling.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+sellerProducts.forEach(product=>{
 
 container.innerHTML += `
 
@@ -865,6 +916,15 @@ ${product.name}
 $${product.price}
 </div>
 
+<div style="
+margin-top:10px;
+opacity:.7;
+">
+
+⭐ ${product.sellerRating}
+
+</div>
+
 </div>
 
 </div>
@@ -874,6 +934,145 @@ $${product.price}
 });
 
 }
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+function addProduct(){
+
+const seller =
+JSON.parse(
+localStorage.getItem(
+"loggedInUser"
+)
+);
+
+if(!seller){
+
+alert("Please Login");
+
+return;
+
+}
+
+const name =
+document.getElementById(
+"pName"
+).value;
+
+const price =
+document.getElementById(
+"pPrice"
+).value;
+
+const image =
+document.getElementById(
+"pImage"
+).value;
+
+const category =
+document.getElementById(
+"pCategory"
+).value;
+
+if(
+!name ||
+!price ||
+!image
+){
+
+alert(
+"Please fill all fields"
+);
+
+return;
+
+}
+
+let marketplaceProducts =
+JSON.parse(
+localStorage.getItem(
+"marketplaceProducts"
+)
+) || [];
+
+const newProduct = {
+
+id: Date.now(),
+
+name,
+
+price,
+
+image,
+
+category,
+
+seller: seller.name,
+
+sellerRating:
+(
+Math.random() * 1 + 4
+).toFixed(1)
+
+};
+
+marketplaceProducts.push(
+newProduct
+);
+
+localStorage.setItem(
+"marketplaceProducts",
+JSON.stringify(
+marketplaceProducts
+)
+);
+
+document.getElementById(
+"pName"
+).value = "";
+
+document.getElementById(
+"pPrice"
+).value = "";
+
+document.getElementById(
+"pImage"
+).value = "";
+
+loadSellerProducts();
+
+if(window.opener){
+
+window.opener.location.reload();
+
+}
+
+alert(
+"Product Uploaded Successfully"
+);
+
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutSeller(){
+
+localStorage.removeItem(
+"loggedInUser"
+);
+
+window.location.href =
+"login.html";
+
+}
+
+/* =========================
+   START
+========================= */
 
 loadSellerProducts();
 
