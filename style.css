@@ -316,25 +316,6 @@ background:var(--primary);
 box-shadow:0 0 20px var(--primary);
 }
 
-/* =========================
-   CATEGORIES
-========================= */
-
-.categories{
-display:flex;
-gap:12px;
-overflow-x:auto;
-padding:25px;
-}
-
-.categories::-webkit-scrollbar{
-display:none;
-}
-
-.categories button{
-white-space:nowrap;
-background:rgba(255,255,255,0.08);
-}
 
 /* =========================
    PRODUCT GRID
