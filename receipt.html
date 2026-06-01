@@ -368,7 +368,16 @@ font-size:18px;
 <div class="header">
 
 <div class="logo">
-EMARKET
+
+<img
+src="LOGO.png"
+alt="EMARKET Logo"
+style="
+height:70px;
+width:auto;
+object-fit:contain;
+">
+
 </div>
 
 <div class="meta">
@@ -476,7 +485,6 @@ Print Receipt
 </button>
 
 </div>
-
 <script>
 
 /* =========================
@@ -487,12 +495,19 @@ function loadReceipt(){
 
 const receipt =
 JSON.parse(
-localStorage.getItem("receipt")
+localStorage.getItem(
+"lastReceipt"
+)
 );
 
 if(!receipt){
 
-alert("No receipt found");
+alert(
+"No receipt found"
+);
+
+window.location.href =
+"index.html";
 
 return;
 
@@ -503,57 +518,91 @@ return;
 document.getElementById(
 "receiptNo"
 ).innerText =
-receipt.orderId;
+receipt.receiptNumber;
 
 document.getElementById(
 "date"
 ).innerText =
-receipt.paymentDate;
+receipt.date;
 
 /* CUSTOMER */
+
+const buyer =
+JSON.parse(
+localStorage.getItem(
+"loggedInUser"
+)
+);
 
 document.getElementById(
 "customer"
 ).innerText =
-receipt.buyer;
+buyer?.name ||
+buyer?.username ||
+"Guest User";
 
-/* ITEMS */
+/* PAYMENT METHOD */
+
+document.querySelector(
+".info-box:nth-child(2)"
+).innerHTML = `
+
+<strong>
+Payment Method
+</strong>
+
+${receipt.paymentMethod.toUpperCase()}
+
+`;
+
+/* PRODUCTS */
 
 const items =
 document.getElementById(
 "items"
 );
 
-items.innerHTML = `
+items.innerHTML = "";
+
+let grandTotal = 0;
+
+receipt.products.forEach(item=>{
+
+const subtotal =
+item.price * item.qty;
+
+grandTotal += subtotal;
+
+items.innerHTML += `
 
 <tr>
 
 <td>
-${receipt.product}
+${item.name}
 </td>
 
 <td>
-1
+${item.qty}
 </td>
 
 <td>
-$${receipt.price}
+$${subtotal.toFixed(2)}
 </td>
 
 </tr>
 
 `;
 
+});
+
 /* TOTAL */
 
 document.getElementById(
 "total"
 ).innerText =
-receipt.price;
+grandTotal.toFixed(2);
 
 }
-
-/* INIT */
 
 loadReceipt();
 
