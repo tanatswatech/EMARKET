@@ -369,7 +369,9 @@ opacity:0.8;
 <button
 class="cart-btn"
 onclick='addToCart(
-"${product.name}"
+"${product.name}",
+"${product.price}",
+"${product.image}"
 )'
 >
 
