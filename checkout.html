@@ -478,39 +478,138 @@ Complete Payment
 <script>
 
 /* =========================
-   LOAD PRODUCT
+   LOAD CHECKOUT CART
 ========================= */
 
-const order =
+let checkoutCart =
 JSON.parse(
-localStorage.getItem("currentOrder")
+localStorage.getItem(
+"checkoutCart"
+)
+) || [];
+
+let checkoutTotal = 0;
+
+let selectedPayment = "";
+
+/* CREATE PRODUCT LIST */
+
+function loadCheckoutProducts(){
+
+const productBox =
+document.querySelector(
+".product-preview"
 );
 
-if(order){
+if(!productBox) return;
 
-document.getElementById(
-"productName"
-).innerText =
-order.product;
+productBox.innerHTML = "";
 
-document.getElementById(
-"productPrice"
-).innerText =
-order.price;
+checkoutTotal = 0;
+
+if(checkoutCart.length === 0){
+
+productBox.innerHTML = `
+
+<div style="
+width:100%;
+text-align:center;
+padding:30px;
+">
+
+<h2>
+Cart Empty
+</h2>
+
+<p>
+No products selected.
+</p>
+
+</div>
+
+`;
+
+return;
 
 }
+
+checkoutCart.forEach(item=>{
+
+const subtotal =
+item.price * item.qty;
+
+checkoutTotal += subtotal;
+
+productBox.innerHTML += `
+
+<div style="
+display:flex;
+gap:20px;
+margin-bottom:20px;
+align-items:center;
+">
+
+<img
+src="${item.image}"
+style="
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:15px;
+">
+
+<div>
+
+<h3>
+${item.name}
+</h3>
+
+<p>
+Price: $${item.price}
+</p>
+
+<p>
+Qty: ${item.qty}
+</p>
+
+<p>
+Subtotal: $${subtotal}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+productBox.innerHTML += `
+
+<hr>
+
+<h2 style="
+color:#ff9900;
+">
+
+TOTAL:
+$${checkoutTotal.toFixed(2)}
+
+</h2>
+
+`;
+
+}
+
+loadCheckoutProducts();
 
 /* =========================
    PAYMENT SELECT
 ========================= */
 
-let selectedPayment = "";
-
 function selectPayment(type,el){
 
 selectedPayment = type;
-
-/* ACTIVE */
 
 document
 .querySelectorAll(".payment-card")
@@ -521,8 +620,6 @@ card.classList.remove("active");
 });
 
 el.classList.add("active");
-
-/* DETAILS */
 
 const details =
 document.getElementById(
@@ -537,7 +634,7 @@ document.getElementById(
 cardForm.style.display =
 "none";
 
-if(type === "ecocash"){
+if(type==="ecocash"){
 
 details.innerHTML = `
 
@@ -551,21 +648,9 @@ Dial:
 
 <strong>
 
-*151*2*2*59821*${order.price}#
+*151*2*2*59821*${checkoutTotal}#
 
 </strong>
-
-</p>
-
-<p>
-
-or use the EcoCash App.
-
-</p>
-
-<p>
-
-Live life the EcoCash Way!
 
 </p>
 
@@ -573,7 +658,7 @@ Live life the EcoCash Way!
 
 }
 
-else if(type === "innbucks"){
+else if(type==="innbucks"){
 
 details.innerHTML = `
 
@@ -583,25 +668,11 @@ Pay with Innbucks
 
 <p>
 
-Open your Innbucks App.
-
-</p>
-
-<p>
-
-Send payment to merchant code:
+Merchant Code:
 
 <strong>
-
 EMARKET248
-
 </strong>
-
-</p>
-
-<p>
-
-Fast • Safe • Instant
 
 </p>
 
@@ -609,7 +680,7 @@ Fast • Safe • Instant
 
 }
 
-else if(type === "visa"){
+else if(type==="visa"){
 
 details.innerHTML = `
 
@@ -618,9 +689,7 @@ Visa Payment
 </h2>
 
 <p>
-
-Enter your Visa card details below.
-
+Enter Visa details below.
 </p>
 
 `;
@@ -630,7 +699,7 @@ cardForm.style.display =
 
 }
 
-else if(type === "mastercard"){
+else if(type==="mastercard"){
 
 details.innerHTML = `
 
@@ -639,9 +708,7 @@ Mastercard Payment
 </h2>
 
 <p>
-
-Enter your Mastercard details below.
-
+Enter Mastercard details below.
 </p>
 
 `;
@@ -653,9 +720,91 @@ cardForm.style.display =
 
 }
 
+/* =========================
+   COMPLETE PAYMENT
+========================= */
+
+function pay(){
+
+if(checkoutCart.length===0){
+
+alert(
+"Cart is empty"
+);
+
+return;
+
+}
+
+if(!selectedPayment){
+
+alert(
+"Please select payment method"
+);
+
+return;
+
+}
+
+const receiptNumber =
+
+"EM" +
+
+Math.floor(
+100000 +
+Math.random()*900000
+);
+
+const receipt = {
+
+receiptNumber,
+
+paymentMethod:
+selectedPayment,
+
+products:
+checkoutCart,
+
+total:
+checkoutTotal,
+
+date:
+new Date()
+.toLocaleString()
+
+};
+
+localStorage.setItem(
+
+"lastReceipt",
+
+JSON.stringify(receipt)
+
+);
+
+localStorage.removeItem(
+"cart"
+);
+
+localStorage.removeItem(
+"checkoutCart"
+);
+
+alert(
+
+"Payment Successful ✅\n\nReceipt: " +
+
+receiptNumber
+
+);
+
+window.location.href =
+"receipt.html";
+
+}
+
 </script>
 
 <script src="script.js?v=99"></script>
-
 </body>
 </html>
