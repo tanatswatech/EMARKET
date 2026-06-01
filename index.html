@@ -370,32 +370,25 @@ Watch Reels
 
     <div id="cartItems" class="cart-items"></div>
 
-    <div class="cart-footer">
+   <div class="cart-footer">
 
-      <h3>
+  <h3>
 
-        Total:
-        $<span id="cartTotal">0</span>
+    Total:
+    $<span id="cartTotal">0.00</span>
 
-      </h3>
+  </h3>
 
-     <button
-  class="cart-btn"
-  onclick="
-    addToCart(
-      '${product.name}',
-      ${product.price},
-      '${product.image}'
-    )
-">
+  <button
+    class="cart-btn"
+    onclick="checkoutCart()"
+  >
 
-  Add To Cart
+    Proceed To Checkout
 
-</button>
-    </div>
+  </button>
 
-  </div>
-
+</div>
 </div>
 </body>
 </html>
