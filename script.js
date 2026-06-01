@@ -1446,7 +1446,7 @@ document.getElementById(
 
 }
 /* =========================
-   CART SYSTEM FULL
+   CART SYSTEM
 ========================= */
 
 function getCart() {
@@ -1466,27 +1466,36 @@ function saveCart(cart) {
 
 }
 
-/* ADD TO CART */
+/* =========================
+   ADD TO CART
+========================= */
 
-function addToCart(productName, productPrice, productImage) {
+function addToCart(
+  productName,
+  productPrice,
+  productImage
+) {
 
   let cart = getCart();
 
-  const existing = cart.find(
-    item => item.name === productName
-  );
+  const existing =
+    cart.find(item =>
+      item.name === productName
+    );
 
-  if (existing) {
+  if(existing){
 
     existing.qty += 1;
 
-  } else {
+  }else{
 
     cart.push({
 
+      id: Date.now(),
+
       name: productName,
 
-      price: productPrice,
+      price: Number(productPrice),
 
       image: productImage,
 
@@ -1500,18 +1509,27 @@ function addToCart(productName, productPrice, productImage) {
 
   updateCartCount();
 
-  alert(productName + " added to cart 🛒");
+  loadCart();
+
+  alert(
+    productName +
+    " added to cart 🛒"
+  );
 
 }
 
-/* REMOVE ITEM */
+/* =========================
+   REMOVE ITEM
+========================= */
 
-function removeFromCart(productName) {
+function removeFromCart(productName){
 
   let cart = getCart();
 
-  cart = cart.filter(
-    item => item.name !== productName
+  cart = cart.filter(item =>
+
+    item.name !== productName
+
   );
 
   saveCart(cart);
@@ -1522,23 +1540,30 @@ function removeFromCart(productName) {
 
 }
 
-/* UPDATE QTY */
+/* =========================
+   CHANGE QUANTITY
+========================= */
 
-function changeQty(productName, type) {
+function changeQty(
+  productName,
+  action
+){
 
   let cart = getCart();
 
-  cart.forEach(item => {
+  cart.forEach(item=>{
 
-    if (item.name === productName) {
+    if(item.name === productName){
 
-      if (type === "plus") {
+      if(action === "plus"){
 
-        item.qty += 1;
+        item.qty++;
 
-      } else {
+      }
 
-        item.qty -= 1;
+      if(action === "minus"){
+
+        item.qty--;
 
       }
 
@@ -1546,7 +1571,9 @@ function changeQty(productName, type) {
 
   });
 
-  cart = cart.filter(item => item.qty > 0);
+  cart = cart.filter(
+    item => item.qty > 0
+  );
 
   saveCart(cart);
 
@@ -1556,17 +1583,23 @@ function changeQty(productName, type) {
 
 }
 
-/* LOAD CART */
+/* =========================
+   LOAD CART
+========================= */
 
-function loadCart() {
+function loadCart(){
 
   const cartItems =
-    document.getElementById("cartItems");
+    document.getElementById(
+      "cartItems"
+    );
 
   const cartTotal =
-    document.getElementById("cartTotal");
+    document.getElementById(
+      "cartTotal"
+    );
 
-  if (!cartItems) return;
+  if(!cartItems) return;
 
   const cart = getCart();
 
@@ -1574,21 +1607,25 @@ function loadCart() {
 
   let total = 0;
 
-  if (cart.length === 0) {
+  if(cart.length === 0){
 
     cartItems.innerHTML = `
 
       <div class="empty-cart">
 
-        <h3>🛒 Cart Empty</h3>
+        <h3>
+        🛒 Cart Empty
+        </h3>
 
-        <p>No products added yet.</p>
+        <p>
+        No products added yet.
+        </p>
 
       </div>
 
     `;
 
-    if (cartTotal) {
+    if(cartTotal){
 
       cartTotal.innerText = "0";
 
@@ -1598,48 +1635,85 @@ function loadCart() {
 
   }
 
-  cart.forEach(item => {
+  cart.forEach(item=>{
 
-    total += item.price * item.qty;
+    const subtotal =
+      item.price * item.qty;
+
+    total += subtotal;
 
     const div =
       document.createElement("div");
 
-    div.className = "cart-item";
+    div.className =
+      "cart-item";
 
     div.innerHTML = `
 
-      <img src="${item.image}">
+      <img
+      src="${item.image}"
+      >
 
       <div class="cart-info">
 
-        <h3>${item.name}</h3>
+        <h3>
+        ${item.name}
+        </h3>
 
-        <p>$${item.price}</p>
+        <p>
+        $${item.price}
+        </p>
+
+        <small>
+
+        Subtotal:
+        $${subtotal}
+
+        </small>
 
         <div class="qty-box">
 
-          <button onclick="
-            changeQty('${item.name}','minus')
-          ">-</button>
+          <button
+          onclick="
+          changeQty(
+          '${item.name}',
+          'minus'
+          )
+          ">
+          -
+          </button>
 
-          <span>${item.qty}</span>
+          <span>
+          ${item.qty}
+          </span>
 
-          <button onclick="
-            changeQty('${item.name}','plus')
-          ">+</button>
+          <button
+          onclick="
+          changeQty(
+          '${item.name}',
+          'plus'
+          )
+          ">
+          +
+          </button>
 
         </div>
 
       </div>
 
       <button
-        class="remove-btn"
-        onclick="
-          removeFromCart('${item.name}')
-        ">
 
-        ✖
+      class="remove-btn"
+
+      onclick="
+      removeFromCart(
+      '${item.name}'
+      )
+      "
+
+      >
+
+      ✖
 
       </button>
 
@@ -1649,47 +1723,59 @@ function loadCart() {
 
   });
 
-  if (cartTotal) {
+  if(cartTotal){
 
-    cartTotal.innerText = total;
+    cartTotal.innerText =
+      total.toFixed(2);
 
   }
 
 }
 
-/* UPDATE SMALL CART COUNT */
+/* =========================
+   CART COUNT
+========================= */
 
-function updateCartCount() {
+function updateCartCount(){
 
-  const cart = getCart();
+  const cart =
+    getCart();
 
   const count =
-    document.getElementById("cartCount");
+    document.getElementById(
+      "cartCount"
+    );
 
-  if (!count) return;
+  if(!count) return;
 
-  let total = 0;
+  let totalItems = 0;
 
-  cart.forEach(item => {
+  cart.forEach(item=>{
 
-    total += item.qty;
+    totalItems += item.qty;
 
   });
 
-  count.innerText = total;
+  count.innerText =
+    totalItems;
 
 }
 
-/* OPEN CART */
+/* =========================
+   OPEN CART
+========================= */
 
-function openCart() {
+function openCart(){
 
-  const cart =
-    document.getElementById("cartOverlay");
+  const overlay =
+    document.getElementById(
+      "cartOverlay"
+    );
 
-  if (cart) {
+  if(overlay){
 
-    cart.style.display = "flex";
+    overlay.style.display =
+      "flex";
 
   }
 
@@ -1697,38 +1783,51 @@ function openCart() {
 
 }
 
-/* CLOSE CART */
+/* =========================
+   CLOSE CART
+========================= */
 
-function closeCart() {
+function closeCart(){
 
-  const cart =
-    document.getElementById("cartOverlay");
+  const overlay =
+    document.getElementById(
+      "cartOverlay"
+    );
 
-  if (cart) {
+  if(overlay){
 
-    cart.style.display = "none";
+    overlay.style.display =
+      "none";
 
   }
 
 }
 
-/* GO CHECKOUT */
+/* =========================
+   CHECKOUT
+========================= */
 
-function checkoutCart() {
+function checkoutCart(){
 
-  const cart = getCart();
+  const cart =
+    getCart();
 
-  if (cart.length === 0) {
+  if(cart.length === 0){
 
-    alert("Cart is empty");
+    alert(
+      "Cart is empty"
+    );
 
     return;
 
   }
 
   localStorage.setItem(
+
     "checkoutCart",
+
     JSON.stringify(cart)
+
   );
 
   window.location.href =
@@ -1737,31 +1836,44 @@ function checkoutCart() {
 }
 
 /* =========================
-   INIT CART
+   INIT
 ========================= */
 
 document.addEventListener(
+
   "DOMContentLoaded",
-  () => {
+
+  function(){
 
     updateCartCount();
 
     loadCart();
 
   }
+
 );
 
-/* GLOBALS */
+/* =========================
+   GLOBALS
+========================= */
 
-window.openCart = openCart;
+window.addToCart =
+addToCart;
 
-window.closeCart = closeCart;
+window.removeFromCart =
+removeFromCart;
 
-window.checkoutCart = checkoutCart;
+window.changeQty =
+changeQty;
 
-window.changeQty = changeQty;
+window.openCart =
+openCart;
 
-window.removeFromCart = removeFromCart;
+window.closeCart =
+closeCart;
+
+window.checkoutCart =
+checkoutCart;
 
 /* =========================
    CONTACT SELLER
