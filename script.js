@@ -348,6 +348,23 @@ Buy Now
 
 </button>
 
+<button
+class="whatsapp-btn"
+style="
+margin-top:10px;
+width:100%;
+background:#25D366;
+"
+onclick='contactSeller(
+"${product.name}",
+${product.price}
+)'
+>
+
+💬 Contact Us
+
+</button>
+
 </div>
 
 `;
@@ -1745,3 +1762,19 @@ window.checkoutCart = checkoutCart;
 window.changeQty = changeQty;
 
 window.removeFromCart = removeFromCart;
+
+/* =========================
+   CONTACT SELLER
+========================= */
+
+function contactSeller(productName, price){
+
+const message =
+`Hello Benike Technologies, I am interested in ${productName} ($${price}). Is it still available?`;
+
+window.open(
+`https://wa.me/263784324361?text=${encodeURIComponent(message)}`,
+'_blank'
+);
+
+}
