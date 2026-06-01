@@ -61,15 +61,59 @@ window.location.href =
 }
 
 /* =========================
-   CART SYSTEM
+   ADD TO CART
 ========================= */
-function addToCart(productName) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push(productName);
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+function addToCart(
+productName,
+productPrice,
+productImage
+){
 
-  alert(productName + " added to cart 🛒");
+let cart =
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const existing =
+cart.find(item =>
+
+item.name === productName
+
+);
+
+if(existing){
+
+existing.qty += 1;
+
+}else{
+
+cart.push({
+
+name: productName,
+
+price: Number(productPrice),
+
+image: productImage,
+
+qty: 1
+
+});
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+alert(
+productName +
+" added to cart 🛒"
+);
+
 }
 
 /* =========================
